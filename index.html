@@ -855,6 +855,8 @@
   padding: 22px 0 26px;
   width: max-content;
   margin: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 .nbc-card {
   --w: clamp(180px, 17vw, 260px);
@@ -1151,11 +1153,12 @@
       cacheLayout();
       const sw = setW();
       if (sw > 1 && cardW > 0) {
-        autoOff = sw / 2 - stageW / 2;
-        if (autoOff < 0) autoOff = 0;
+        autoOff = 0;          // começa do início — sem salto, sem glitch
         initialized = true;
         lastTs = ts;
+        track.style.opacity = '1';  // revela o track só após posição definida
       }
+      return;                 // não renderiza frames antes de estar pronto
     }
 
     if (active && !dragging && lastTs > 0) {
