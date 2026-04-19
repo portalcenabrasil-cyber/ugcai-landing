@@ -1122,9 +1122,12 @@
         if (video) {
           const absDist = Math.abs(dist);
           if (absDist < loadRadius) {
-            // Carrega src de todos os cards visíveis (usa distância real, não t clampeado)
-            if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
-            if (video.src && video.paused && video.readyState >= 2) {
+            // Carrega src de todos os cards visíveis e deixa o browser autoplay
+            if (!video.src && video.dataset.src) {
+              video.autoplay = true;
+              video.src = video.dataset.src;
+              video.load();
+            } else if (video.src && video.paused) {
               video.play().catch(() => {});
             }
           }
