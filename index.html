@@ -1051,7 +1051,7 @@
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
+          <video class="nbc-video" data-src="${src}" muted loop playsinline preload="none"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
@@ -1090,12 +1090,14 @@
 
   function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
 
-  /* apply3D: pure math — zero getBoundingClientRect calls per frame */
+  let frameCount = 0;
+
+  /* apply3D: transforms + lazy video loading */
   function apply3D(tx) {
     const halfStage = stageW * 0.55;
-    const stageCenterRel = stageW / 2; // center relative to stage left
+    const stageCenterRel = stageW / 2;
+    const doVideo = (frameCount % 3 === 0);
     cardNodes.forEach((card, i) => {
-      // card center relative to stage left = tx + i*(cardW+GAP) + cardW/2
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
       const t      = Math.max(-1, Math.min(1, dist / halfStage));
@@ -1103,6 +1105,20 @@
       card.style.transform = `rotateY(${t * MAX_ROT_Y}deg) scale(${1 - absT * MAX_SCALE_D}) translateY(${-MAX_TRANSY * (1 - absT)}px)`;
       card.style.opacity   = 1 - absT * MAX_OPACITY_D;
       card.style.zIndex    = Math.round((1 - absT) * 10);
+
+      if (doVideo) {
+        const video = card.querySelector('video');
+        if (video) {
+          if (absT < 0.75) {
+            // Pré-carrega os cards visíveis
+            if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
+            if (absT < 0.45 && video.paused && video.readyState >= 2) {
+              video.play().catch(() => {});
+            }
+          }
+        }
+      }
+
       if (absT < 0.5) {
         if (card !== lastActive) {
           if (lastActive) lastActive.classList.remove('nbc-active');
@@ -1121,6 +1137,7 @@
   }
 
   function tick(ts) {
+    frameCount++;
     if (!initialized) {
       cacheLayout();
       const sw = setW();
