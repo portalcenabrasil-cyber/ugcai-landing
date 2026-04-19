@@ -1016,7 +1016,7 @@
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
+          <video class="nbc-video" data-src="${src}" muted loop playsinline preload="none"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
@@ -1058,9 +1058,8 @@
   /* apply3D: pure math — zero getBoundingClientRect calls per frame */
   function apply3D(tx) {
     const halfStage = stageW * 0.55;
-    const stageCenterRel = stageW / 2; // center relative to stage left
+    const stageCenterRel = stageW / 2;
     cardNodes.forEach((card, i) => {
-      // card center relative to stage left = tx + i*(cardW+GAP) + cardW/2
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
       const t      = Math.max(-1, Math.min(1, dist / halfStage));
@@ -1068,6 +1067,27 @@
       card.style.transform = `rotateY(${t * MAX_ROT_Y}deg) scale(${1 - absT * MAX_SCALE_D}) translateY(${-MAX_TRANSY * (1 - absT)}px)`;
       card.style.opacity   = 1 - absT * MAX_OPACITY_D;
       card.style.zIndex    = Math.round((1 - absT) * 10);
+
+      // Lazy load: só carrega vídeos dentro do range visível (~3 cards de cada lado)
+      const video = card.querySelector('video');
+      if (video) {
+        if (absT < 0.75) {
+          if (!video.src && video.dataset.src) {
+            video.src = video.dataset.src;
+            video.load();
+          }
+          if (video.paused && video.readyState >= 2) video.play().catch(() => {});
+        } else {
+          if (!video.paused) { video.pause(); }
+          // Libera memória de vídeos muito distantes
+          if (absT > 0.95 && video.src) {
+            video.pause();
+            video.removeAttribute('src');
+            video.load();
+          }
+        }
+      }
+
       if (absT < 0.5) {
         if (card !== lastActive) {
           if (lastActive) lastActive.classList.remove('nbc-active');
