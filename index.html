@@ -168,8 +168,10 @@
     }
     .hero-title {
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(52px,9vw,128px); font-weight: 800;
-      letter-spacing: -4px; line-height: 0.9; margin-bottom: 28px;
+      font-size: clamp(36px,9vw,128px); font-weight: 800;
+      letter-spacing: -2px; line-height: 0.95; margin-bottom: 28px;
+      word-break: break-word; overflow-wrap: break-word;
+      width: 100%; box-sizing: border-box;
     }
     .hero-title .t1 { display: block; color: #ffffff; text-shadow: 0 2px 24px rgba(0,0,0,0.3); }
     .hero-title .t2 {
@@ -722,6 +724,36 @@
     }
     h1, h2, p { text-align: center; }
     img { max-width: 100%; display: block; }
+
+    /* ─── MOCKUP STATS ROW ─── */
+    .mockup-stats {
+      display: flex; justify-content: center; align-items: center;
+      gap: 32px; margin-top: 28px; flex-wrap: nowrap;
+      position: relative; z-index: 1;
+      width: 100%; box-sizing: border-box;
+    }
+    .mockup-stat { text-align: center; }
+    .mockup-stat-lbl {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: #ff8c3a; margin-bottom: 6px; font-weight: 700;
+    }
+    .mockup-stat-val {
+      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      color: rgba(255,255,255,0.82); font-weight: 500;
+    }
+    .mockup-stat-divider {
+      width: 1px; align-self: stretch;
+      background: rgba(255,255,255,0.15); flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .mockup-stats {
+        flex-direction: column; gap: 20px;
+        padding: 0 24px;
+      }
+      .mockup-stat-divider { display: none; }
+      .mockup-stat { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -1319,20 +1351,20 @@
   </div>
 
   <!-- stat labels below mockup -->
-  <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:1;">
-    <div style="text-align:center;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">Modo Lote</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Gere até 20 produtos de uma vez</div>
+  <div class="mockup-stats">
+    <div class="mockup-stat">
+      <div class="mockup-stat-lbl">Modo Lote</div>
+      <div class="mockup-stat-val">Gere até 20 produtos de uma vez</div>
     </div>
-    <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
-    <div style="text-align:center;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">Galeria</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Todo prompt salvo automaticamente</div>
+    <div class="mockup-stat-divider"></div>
+    <div class="mockup-stat">
+      <div class="mockup-stat-lbl">Galeria</div>
+      <div class="mockup-stat-val">Todo prompt salvo automaticamente</div>
     </div>
-    <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
-    <div style="text-align:center;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">~3 segundos</div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Por produto gerado</div>
+    <div class="mockup-stat-divider"></div>
+    <div class="mockup-stat">
+      <div class="mockup-stat-lbl">~3 segundos</div>
+      <div class="mockup-stat-val">Por produto gerado</div>
     </div>
   </div>
 </section>
@@ -2154,26 +2186,34 @@ function switchTab(tab) {
   );
   pointer-events:none; z-index:0;
 }
-.ppc-inner { position:relative; z-index:1; max-width:960px; margin:0 auto; }
+.ppc-inner {
+  position:relative; z-index:1; max-width:960px; margin:0 auto;
+  width:100%; box-sizing:border-box; padding:0 20px;
+}
 .ppc-title {
   font-family:'Bricolage Grotesque',sans-serif;
-  font-weight:900; letter-spacing:-2px; line-height:1.0;
+  font-weight:900; letter-spacing:-2px; line-height:1.05;
   color:white; text-transform:uppercase; margin-bottom:24px;
   font-size: clamp(28px,5vw,72px);
+  word-break: break-word; overflow-wrap: break-word;
+  width:100%; box-sizing:border-box;
 }
 .ppc-line1 {
   display:block;
-  white-space: nowrap;
+  white-space: normal;
   margin-bottom:0;
 }
 .ppc-gradient {
+  display:block;
   background: var(--iridescent);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
 }
 .ppc-sub {
   font-family:'DM Mono',monospace; font-size:clamp(10px,1.1vw,13px);
-  letter-spacing:3px; color:rgba(255,255,255,0.45);
+  letter-spacing: clamp(1px, 0.5vw, 3px); color:rgba(255,255,255,0.45);
   text-transform:uppercase; margin-bottom:40px;
+  word-break:break-word; overflow-wrap:break-word;
+  width:100%; box-sizing:border-box;
 }
 .ppc-btn {
   display:inline-block;
