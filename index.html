@@ -842,15 +842,7 @@
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
-.nbc-card::before {
-  content: ''; position: absolute; inset: 0; z-index: 0;
-}
-.nbc-card:nth-child(6n+1)::before { background: linear-gradient(150deg,#2a0040,#6600aa); }
-.nbc-card:nth-child(6n+2)::before { background: linear-gradient(150deg,#001830,#004d99); }
-.nbc-card:nth-child(6n+3)::before { background: linear-gradient(150deg,#1a1000,#554400); }
-.nbc-card:nth-child(6n+4)::before { background: linear-gradient(150deg,#001a0d,#006633); }
-.nbc-card:nth-child(6n+5)::before { background: linear-gradient(150deg,#1a0008,#660022); }
-.nbc-card:nth-child(6n+6)::before { background: linear-gradient(150deg,#0a0a0a,#303030); }
+.nbc-card::before { content: none; }
 .nbc-card.nbc-active {
   border-color: var(--orange) !important;
   box-shadow:
@@ -864,6 +856,10 @@
   object-fit: cover;
   display: block;
   position: relative; z-index: 1;
+  pointer-events: none;
+}
+.nbc-card:not(.nbc-loaded) {
+  opacity: 0 !important;
   pointer-events: none;
 }
 .nbc-card-body {
@@ -1076,7 +1072,10 @@
             video.src = video.dataset.src;
             video.load();
           }
-          if (video.paused && video.readyState >= 2) video.play().catch(() => {});
+          if (video.paused && video.readyState >= 2) {
+            video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
+          }
+          if (!video.paused) card.classList.add('nbc-loaded');
         } else {
           if (!video.paused) { video.pause(); }
           // Libera memória de vídeos muito distantes
@@ -1084,6 +1083,7 @@
             video.pause();
             video.removeAttribute('src');
             video.load();
+            card.classList.remove('nbc-loaded');
           }
         }
       }
