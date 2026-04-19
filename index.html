@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGC·AI — Prompts que Vendem no TikTok Shop Brasil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #EDF0F9;
+      --bg-white:      #F6F8FF;
+      --bg-card:       #F6F8FF;
+      --border:        rgba(30,50,130,0.09);
+      --border-med:    rgba(30,50,130,0.14);
+      --border-hover:  rgba(255,107,0,0.28);
+      --orange:        #FF6B00;
+      --orange-dim:    rgba(255,107,0,0.07);
+      --text:          #0B0D1A;
+      --text-dim:      #555E78;
+      --text-muted:    #98A0B8;
+      --green:         #16A34A;
+      --radius:        18px;
+      --radius-sm:     11px;
+      --blur:          blur(20px) saturate(180%);
+      --iridescent:    linear-gradient(135deg, #ff6600, #cc44ff, #0099ff);
+      --shadow-card:   0 1px 3px rgba(10,20,80,0.06), 0 4px 16px rgba(10,20,80,0.08);
+      --shadow-hover:  0 8px 32px rgba(10,20,80,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-bar {
+      background: var(--text);
+      padding: 9px 0; overflow: hidden;
+      position: relative; z-index: 10;
+    }
+    .marquee-track { display: flex; width: max-content; animation: marquee 35s linear infinite; }
+    .marquee-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 0 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: rgba(255,255,255,0.45);
+      letter-spacing: 1px; white-space: nowrap;
+    }
+    .marquee-item .sep { color: var(--orange); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(4,6,18,0.96);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: clamp(10px,1.2vh,16px) clamp(16px,3vw,40px);
+      display: flex; align-items: center; gap: 20px;
+      min-height: clamp(52px,5vh,68px);
+    }
+    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
+    .logo-mark {
+      width: 34px; height: 34px;
+      background: var(--iridescent); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px; font-weight: 800; color: white; flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px; font-weight: 800; letter-spacing: -0.5px; color: white;
+    }
+    .logo-name em { color: var(--orange); font-style: normal; }
+
+    .header-nav {
+      display: flex; align-items: center; gap: 2px; margin: 0 auto;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px; padding: 3px;
+    }
+    .nav-tab {
+      padding: 6px 18px; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.55); cursor: pointer; transition: all 0.2s;
+      border: none; background: transparent; text-decoration: none; white-space: nowrap;
+    }
+    .nav-tab:hover { color: white; background: rgba(255,255,255,0.08); }
+
+    .btn-header-cta {
+      margin-left: auto; flex-shrink: 0;
+      background: white; border: none; border-radius: 100px;
+      color: #06091a; font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px; font-weight: 700; padding: 9px 22px;
+      cursor: pointer; transition: all 0.25s; text-decoration: none;
+    }
+    .btn-header-cta:hover { background: var(--orange); transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: clamp(80px,12vh,140px) clamp(20px,5vw,64px) clamp(48px,7vh,80px);
+      position: relative; z-index: 1;
+      overflow: hidden;
+      min-height: 100svh;
+    }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 80%; z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.47); z-index: 1;
+      pointer-events: none;
+    }
+    /* Bottom fade — dark video dissolves into page background */
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: linear-gradient(
+        to bottom,
+        rgba(80,90,120,0)      0%,
+        rgba(80,90,120,0.18)   20%,
+        rgba(120,132,170,0.42) 42%,
+        rgba(170,178,210,0.68) 62%,
+        rgba(210,215,235,0.88) 80%,
+        #EDF0F9                100%
+      );
+      z-index: 2; pointer-events: none;
+    }
+    .hero > *:not(.hero-video):not(.hero-overlay) { position: relative; z-index: 3; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      padding: 6px 16px; border-radius: 50px;
+      border: 1px solid var(--border-med); background: var(--bg-white);
+      color: var(--text-dim); letter-spacing: 0.5px;
+    }
+    .badge.live {
+      border-color: rgba(22,163,74,0.6);
+      background: rgba(22,163,74,0.12);
+      color: #1ddd5f;
+      margin-bottom: 32px;
+      font-size: 13px;
+      padding: 6px 16px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px rgba(29,221,95,0.40), 0 0 26px rgba(29,221,95,0.16), inset 0 0 8px rgba(29,221,95,0.08);
+      border-width: 1.5px;
+    }
+    .live-dot {
+      width: 6.5px; height: 6.5px; border-radius: 50%; background: #1ddd5f;
+      box-shadow: 0 0 5px #1ddd5f, 0 0 12px rgba(29,221,95,0.7);
+      animation: livePulse 2s ease infinite;
+    }
+    @keyframes livePulse {
+      0%,100% { box-shadow: 0 0 8px #1ddd5f, 0 0 0 0 rgba(29,221,95,0.6); }
+      50%      { box-shadow: 0 0 16px #1ddd5f, 0 0 10px rgba(29,221,95,0); }
+    }
+    .hero-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(52px,9vw,128px); font-weight: 800;
+      letter-spacing: -4px; line-height: 0.9; margin-bottom: 28px;
+    }
+    .hero-title .t1 { display: block; color: #ffffff; text-shadow: 0 2px 24px rgba(0,0,0,0.3); }
+    .hero-title .t2 {
+      display: block;
+      background: var(--iridescent);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(15px,1.8vw,18px); color: var(--text-dim);
+      max-width: 480px; line-height: 1.7; margin: 0 auto 40px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); border: none; border-radius: 100px;
+      color: white; font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px; font-weight: 700; padding: 15px 38px;
+      cursor: pointer; transition: all 0.3s; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(255,107,0,0.28);
+    }
+    .btn-primary:hover { background: #e55f00; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,107,0,0.36); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 1px solid var(--border-med); border-radius: 100px;
+      color: var(--text-dim); font-size: 14px; font-weight: 500;
+      padding: 15px 28px; cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+    .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+
+    .stat-row {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: var(--radius); display: flex; overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .stat-cell { flex: 1; padding: 20px 28px; text-align: center; border-right: 1px solid var(--border); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-val {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(22px,3vw,36px); font-weight: 800; line-height: 1; color: var(--orange);
+    }
+    .stat-lbl {
+      font-family: 'DM Mono', monospace; font-size: 9.5px;
+      color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px;
+    }
+
+    /* ─── APP MOCKUP ─── */
+    .mockup-section {
+      position: relative; z-index: 1;
+      padding: 0 clamp(20px,5vw,64px) clamp(60px,10vh,120px);
+    }
+    .app-shell {
+      background: var(--bg-white); border: 1px solid var(--border-med);
+      border-radius: var(--radius); padding: 3px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.04);
+      max-width: 1000px; margin: 0 auto;
+      transition: box-shadow 0.3s;
+    }
+    .app-shell:hover { box-shadow: 0 16px 60px rgba(0,0,0,0.12); }
+    .app-window { background: #EEF1FA; border-radius: 15px; overflow: hidden; }
+    .app-titlebar {
+      padding: 10px 18px; background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .titlebar-dots { display: flex; gap: 6px; }
+    .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #FF5F57; } .dot-amber { background: #FEBC2E; } .dot-green { background: #28C840; }
+    .titlebar-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin: 0 auto; }
+    .app-grid-mock { display: grid; grid-template-columns: 300px 1fr; background: var(--border); gap: 1px; min-height: 380px; }
+    .panel-left-mock { background: #EDF0F9; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 9.5px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;
+    }
+    .upload-area-mock {
+      border: 1.5px dashed rgba(255,107,0,0.4); border-radius: var(--radius-sm);
+      padding: 14px 12px; text-align: center; background: var(--orange-dim);
+    }
+    .upload-area-mock .upload-icon { font-size: 20px; margin-bottom: 3px; }
+    .upload-area-mock .upload-text { font-size: 11px; font-weight: 600; color: var(--orange); font-family: 'DM Sans', sans-serif; }
+    .seg-group { display: grid; gap: 4px; }
+    .seg-group.cols-2 { grid-template-columns: 1fr 1fr; }
+    .seg-btn {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: 7px; color: var(--text-dim);
+      font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+      padding: 7px 10px; cursor: default; text-align: center; line-height: 1.3;
+    }
+    .seg-btn.active { background: var(--orange-dim); border-color: rgba(255,107,0,0.35); color: var(--orange); font-weight: 600; }
+    .btn-gen-mock {
+      background: var(--orange); border: none; border-radius: 100px;
+      color: white; font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 12px; font-weight: 700; padding: 10px 12px;
+      text-align: center; margin-top: auto;
+    }
+    .panel-right-mock { background: var(--bg-white); padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
+    .result-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); overflow: hidden;
+    }
+    .result-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 13px; border-bottom: 1px solid var(--border); background: #EDF0F9;
+    }
+    .result-card-title {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--text-dim); display: flex; align-items: center; gap: 7px;
+      font-family: 'DM Mono', monospace;
+    }
+    .title-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+    .btn-copy-mock {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: 7px; color: var(--text-muted);
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      padding: 4px 10px; cursor: default; display: flex; align-items: center; gap: 4px;
+    }
+    .result-card-body { padding: 14px 13px; display: flex; flex-direction: column; gap: 6px; }
+    .sk { display: block; height: 8px; border-radius: 4px; background: rgba(0,0,0,0.07); }
+    .sk.w80 { width: 80%; } .sk.w65 { width: 65%; } .sk.w90 { width: 90%; } .sk.w55 { width: 55%; }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; z-index: 1; }
+    .content-section {
+      padding: clamp(60px,10vh,120px) clamp(20px,4vw,80px);
+    }
+    .content-section > *:not(style):not(script) {
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    .content-section.alt-bg { background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(28px,4.5vw,56px); font-weight: 800;
+      letter-spacing: -2px; line-height: 1.0; color: var(--text);
+    }
+    .section-title em {
+      font-style: normal;
+      background: var(--iridescent);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-sub {
+      font-size: clamp(14px,1.6vw,17px); color: var(--text-dim);
+      max-width: 540px; margin: 14px auto 0; line-height: 1.7;
+    }
+
+    /* ─── HOW IT WORKS — STEP CARDS (MakeUGC-inspired) ─── */
+    .steps-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; max-width: 1000px; margin: 0 auto;
+    }
+    .step-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .step-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--border-hover); }
+    .step-card-visual {
+      background: #EDF0F9; border-bottom: 1px solid var(--border);
+      padding: 28px 24px 0; min-height: 220px;
+      display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+      position: relative;
+    }
+    .step-card-visual.orange-tint { background: rgba(255,107,0,0.05); }
+    .step-card-visual.purple-tint { background: rgba(138,79,255,0.05); }
+    .step-card-visual.blue-tint { background: rgba(0,120,255,0.05); }
+
+    /* Step 1 visual — photo upload */
+    .visual-upload {
+      width: 100%; background: white; border-radius: 12px 12px 0 0;
+      border: 1px solid var(--border-med); border-bottom: none;
+      overflow: hidden; box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    }
+    .visual-upload-header {
+      padding: 10px 14px; background: #EEF1FA; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .visual-upload-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,107,0,0.2); flex-shrink: 0; }
+    .visual-upload-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-muted); }
+    .visual-upload-body { padding: 16px; }
+    .visual-drop-zone {
+      border: 2px dashed rgba(255,107,0,0.35); border-radius: 10px;
+      padding: 22px 16px; text-align: center;
+      background: rgba(255,107,0,0.04);
+    }
+    .visual-drop-icon { font-size: 26px; margin-bottom: 6px; }
+    .visual-drop-text { font-size: 11px; font-weight: 600; color: var(--orange); font-family: 'DM Sans', sans-serif; }
+    .visual-drop-hint { font-size: 9.5px; color: var(--text-muted); font-family: 'DM Mono', monospace; margin-top: 4px; }
+
+    /* Step 2 visual — configuration */
+    .visual-config { width: 100%; background: white; border-radius: 12px 12px 0 0; border: 1px solid var(--border-med); border-bottom: none; overflow: hidden; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); }
+    .visual-config-header { padding: 10px 14px; background: #EEF1FA; border-bottom: 1px solid var(--border); }
+    .visual-config-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+    .vc-label { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+    .vc-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 3px; }
+    .vc-chip {
+      font-family: 'DM Sans', sans-serif; font-size: 10px;
+      padding: 4px 10px; border-radius: 50px; border: 1px solid var(--border);
+      color: var(--text-dim); background: var(--bg);
+    }
+    .vc-chip.active { background: var(--orange-dim); border-color: rgba(255,107,0,0.35); color: var(--orange); font-weight: 600; }
+
+    /* Step 3 visual — output */
+    .visual-output { width: 100%; background: white; border-radius: 12px 12px 0 0; border: 1px solid var(--border-med); border-bottom: none; overflow: hidden; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); }
+    .visual-output-header { padding: 10px 14px; background: #EEF1FA; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .visual-output-tag { font-family: 'DM Mono', monospace; font-size: 8.5px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+    .vo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+    .visual-copy-btn { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--text-muted); border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px; }
+    .visual-output-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 5px; }
+    .vo-line { height: 7px; border-radius: 4px; background: rgba(0,0,0,0.07); }
+
+    .step-card-content { padding: 22px 24px 26px; }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--orange-dim); border: 1.5px solid rgba(255,107,0,0.25);
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 800;
+      color: var(--orange); margin-bottom: 12px;
+    }
+    .step-card-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text);
+    }
+    .step-card-desc { font-size: 13px; line-height: 1.7; color: var(--text-dim); }
+
+    /* ─── FEATURE HIGHLIGHTS (2-col alternating) ─── */
+    .feat-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      max-width: 1000px; margin: 0 auto 16px;
+    }
+    .feat-row:last-child { margin-bottom: 0; }
+    .feat-block {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 32px 30px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .feat-block:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--border-hover); }
+    .feat-block.wide { grid-column: span 2; }
+    .feat-block-icon { font-size: 32px; margin-bottom: 16px; }
+    .feat-block-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
+      margin-bottom: 10px; color: var(--text);
+    }
+    .feat-block-desc { font-size: 14px; line-height: 1.75; color: var(--text-dim); max-width: 420px; }
+
+    /* Wide feat block inner layout */
+    .feat-block-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    .feat-mini-preview {
+      background: #EDF0F9; border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .fmp-row { display: flex; gap: 6px; }
+    .fmp-thumb {
+      flex: 1; aspect-ratio: 3/4; border-radius: 8px;
+      background: white; border: 1px solid var(--border-med);
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .fmp-status {
+      font-family: 'DM Mono', monospace; font-size: 9px; color: var(--green);
+      background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.2);
+      border-radius: 7px; padding: 6px 10px; text-align: center;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 1000px; margin: 0 auto; }
+    .proof-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 26px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .proof-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-hover); }
+    .proof-stars { color: var(--orange); font-size: 11px; letter-spacing: 3px; margin-bottom: 16px; }
+    .proof-text {
+      font-size: 13.5px; line-height: 1.8; color: var(--text-dim); margin-bottom: 22px; flex: 1;
+    }
+    .proof-text strong { color: var(--text); font-weight: 600; }
+    .proof-author { display: flex; align-items: center; gap: 11px; }
+    .proof-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--iridescent); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 800; color: white;
+    }
+    .proof-name { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; }
+    .proof-handle { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); }
+
+    /* ─── PRICING — dark section + card redesign ─── */
+    #pricing { background: #08091a !important; position: relative; overflow: hidden; }
+    #pricing::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(to bottom, rgba(8,9,26,0) 0%, #06091a 100%);
+      pointer-events: none; z-index: 0;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 24px; max-width: 1020px; margin: 0 auto;
+      align-items: stretch;
+    }
+    .price-card {
+      background: #13172e;
+      border-radius: 22px;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      padding: 0 0 28px;
+      display: flex; flex-direction: column; position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    }
+    .price-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+    /* top badge bar — full width */
+    .price-badge {
+      display: block; width: 100%;
+      font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 9px 28px; white-space: nowrap;
+      color: white; font-weight: 700; text-align: left;
+      margin-bottom: 22px; position: static; transform: none; left: auto;
+    }
+    .badge-promo  { background: var(--orange); }
+    .badge-premium { background: linear-gradient(90deg,#ff6600,#cc44ff,#0099ff); }
+
+    /* card body padding */
+    .price-card .price-plan,
+    .price-card .price-original,
+    .price-card .price-value,
+    .price-card .price-period,
+    .price-card .price-list,
+    .price-card .btn-price-plan { padding-left: 26px; padding-right: 26px; }
+
+    /* STARTER */
+    .price-card.starter .price-badge { background: var(--orange); }
+    .price-card.starter .price-list li::before { color: #4da6ff; }
+    .price-card.starter .btn-price-plan {
+      background: transparent;
+      border: 2px solid #00c4cc;
+      color: white;
+      box-shadow: 0 0 18px rgba(0,196,204,0.25);
+    }
+    .price-card.starter .btn-price-plan:hover {
+      background: rgba(0,196,204,0.12);
+      box-shadow: 0 0 32px rgba(0,196,204,0.45);
+    }
+
+    /* PRO */
+    .price-card.pro {
+      border-color: rgba(130,80,255,0.3);
+      box-shadow: 0 8px 40px rgba(130,80,255,0.18);
+    }
+    .price-card.pro .price-list li::before { color: #8a50ff; }
+    .price-card.pro .btn-price-plan {
+      background: transparent;
+      border: 2px solid #8a50ff;
+      color: white;
+      box-shadow: 0 0 18px rgba(138,80,255,0.30);
+    }
+    .price-card.pro .btn-price-plan:hover {
+      background: rgba(138,80,255,0.14);
+      box-shadow: 0 0 32px rgba(138,80,255,0.5);
+    }
+
+    /* AGÊNCIA — elevated */
+    .price-card.agencia {
+      background: linear-gradient(155deg,#0e1230,#16082e,#0c1840);
+      border-color: rgba(200,120,255,0.35);
+      box-shadow: 0 12px 60px rgba(160,80,255,0.35);
+    }
+    .price-card.agencia:hover { transform: translateY(-8px); box-shadow: 0 24px 80px rgba(160,80,255,0.55); }
+    .price-card.agencia .price-list li::before { color: #c084fc; }
+    .price-card.agencia .price-list li.bonus-item { color: #c084fc; font-weight: 700; }
+    .price-card.agencia .btn-price-plan {
+      background: linear-gradient(135deg,#ff6600,#cc44ff,#0099ff);
+      border: none; color: white;
+      box-shadow: 0 6px 28px rgba(180,60,255,0.45);
+      padding: 16px 26px;
+    }
+    .price-card.agencia .btn-price-plan:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 10px 40px rgba(180,60,255,0.6); }
+
+    /* typography inside cards */
+    .price-plan {
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.45);
+    }
+    .price-original {
+      font-family: 'DM Sans', sans-serif; font-size: 12px;
+      text-decoration: line-through; margin-bottom: 2px;
+      color: rgba(255,255,255,0.3);
+    }
+    .price-value {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(42px,5vw,62px); font-weight: 800;
+      letter-spacing: -2px; line-height: 1; margin-bottom: 6px; color: white;
+    }
+    .price-value sup { font-size: 22px; vertical-align: top; margin-top: 12px; font-weight: 700; }
+    .price-period {
+      font-family: 'DM Sans', sans-serif; font-size: 11px;
+      color: rgba(255,255,255,0.35); margin-bottom: 24px;
+    }
+    .price-list {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 11px; margin-bottom: 28px; flex: 1;
+    }
+    .price-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;
+    }
+    .price-list li::before { content: '✓'; font-weight: 800; flex-shrink: 0; }
+    .price-list li.off { color: rgba(255,255,255,0.25); }
+    .price-list li.off::before { content: '—'; color: rgba(255,255,255,0.2); }
+    .btn-price-plan {
+      width: calc(100% - 52px); margin: 0 26px; padding: 15px;
+      border-radius: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 800;
+      cursor: pointer; text-align: center; text-decoration: none; display: block;
+      transition: all 0.25s; letter-spacing: -0.3px;
+    }
+
+    .cost-box {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 14px 20px;
+      max-width: 520px; margin: 0 auto 52px;
+      font-size: 12px; line-height: 1.9; color: var(--text-dim); text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .cost-box strong { color: var(--orange); font-weight: 600; }
+
+    /* ─── FAQ ─── */
+    .faq-wrap { max-width: 680px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-btn {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      background: none; border: none; color: var(--text);
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 600;
+      padding: 22px 0; cursor: pointer; text-align: left; transition: color 0.2s;
+    }
+    .faq-btn:hover { color: var(--orange); }
+    .faq-icon { font-size: 18px; color: var(--text-muted); flex-shrink: 0; transition: transform 0.3s, color 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--orange); }
+    .faq-ans {
+      font-size: 13px; line-height: 1.8; color: var(--text-dim);
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-ans { max-height: 280px; padding-bottom: 20px; }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      padding: clamp(60px,12vh,140px) clamp(20px,5vw,64px);
+      text-align: center; position: relative; z-index: 1;
+      background: linear-gradient(160deg, #06091a 0%, #0d1235 50%, #080c22 100%);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 50%, rgba(120,60,255,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(255,107,0,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(0,140,255,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 140px;
+      background: linear-gradient(to bottom, transparent 0%, #08091a 100%);
+      pointer-events: none; z-index: 2;
+    }
+    .cta-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(32px,5.5vw,80px); font-weight: 800;
+      letter-spacing: -3px; line-height: 0.95; margin-bottom: 20px; color: white;
+    }
+    .cta-sub { font-size: clamp(13px,1.6vw,16px); color: rgba(255,255,255,0.48); max-width: 460px; margin: 0 auto 40px; line-height: 1.7; }
+    .btn-cta-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border-radius: 100px; color: var(--text);
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;
+      padding: 16px 42px; text-decoration: none; transition: all 0.3s;
+    }
+    .btn-cta-white:hover { background: var(--orange); color: white; transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 24px clamp(20px,5vw,64px); border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px; background: var(--bg-white);
+    }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in-1 { animation: fadeUp 0.7s ease 0.05s both; }
+    .fade-in-2 { animation: fadeUp 0.7s ease 0.15s both; }
+    .fade-in-3 { animation: fadeUp 0.7s ease 0.25s both; }
+    .fade-in-4 { animation: fadeUp 0.7s ease 0.38s both; }
+    .fade-in-5 { animation: fadeUp 0.7s ease 0.52s both; }
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.12); border-radius:2px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .steps-cards { grid-template-columns: 1fr 1fr; }
+      .feat-row { grid-template-columns: 1fr; }
+      .feat-block.wide { grid-column: span 1; }
+      .feat-block-inner { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .app-grid-mock { grid-template-columns: 1fr; }
+      .panel-left-mock { display: none; }
+    }
+    @media (max-width: 600px) {
+      .steps-cards { grid-template-columns: 1fr; }
+      .stat-row { flex-direction: column; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-cell:last-child { border-bottom: none; }
+      .header-nav { display: none; }
+    }
+
+    /* ─── GLOBAL SYMMETRY & CONSISTENCY ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+    section {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .hero, .content-section, .mockup-section, .cta-section {
+      padding-left: clamp(20px,5vw,64px);
+      padding-right: clamp(20px,5vw,64px);
+    }
+    .section-header, .steps-cards, .feat-row, .proof-grid, .pricing-grid, .faq-wrap {
+      width: 100%; max-width: 1000px; margin-left: auto; margin-right: auto;
+    }
+    h1, h2, p { text-align: center; }
+    img { max-width: 100%; display: block; }
+  </style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<header class="site-header fade-in-1" style="justify-content:space-between;position:sticky;top:0;z-index:100;">
+  <a class="logo" href="#" style="flex-shrink:0;">
+    <div class="logo-mark">U</div>
+    <span class="logo-name">UGC<em>·</em>AI</span>
+  </a>
+  <nav class="header-nav" style="position:absolute;left:50%;transform:translateX(-50%);margin:0;">
+    <a class="nav-tab" href="#">Início</a>
+    <a class="nav-tab" href="#gerador">Funcionalidades</a>
+    <a class="nav-tab" href="#pricing">Preços</a>
+    <a class="nav-tab" href="#como-funciona">Como funciona</a>
+  </nav>
+  <a href="#pricing" class="btn-header-cta" style="flex-shrink:0;">Começar agora →</a>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-bottom:clamp(20px,4vh,48px);">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+<h1 class="hero-title fade-in-2">
+    <span class="t1">CRIE VÍDEOS DE IA</span>
+    <span class="t2">EM SEGUNDOS COM ESSA FERRAMENTA</span>
+  </h1>
+  <p class="fade-in-3" style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(18px,2.8vw,36px);font-weight:800;letter-spacing:-1px;color:rgba(255,255,255,0.92);text-align:center;margin-top:8px;margin-bottom:32px;text-shadow:0 2px 16px rgba(0,0,0,0.35);">E COMECE A LUCRAR DE VERDADE NO TIKTOK SHOP!!</p>
+  <div class="hero-actions fade-in-4" style="justify-content:center;">
+    <a href="#pricing" class="btn-primary">✦ Quero meus prompts</a>
+  </div>
+
+</section>
+
+<!-- 3D VIDEO SCROLL -->
+<!-- ═══════════════════════════════════════════════
+     3D VIDEO CAROUSEL  (nano banana style)
+═══════════════════════════════════════════════ -->
+<section class="nbc-section" aria-label="Vídeos gerados pela IA">
+
+  <div class="nbc-stage" id="nbcStage">
+    <div class="nbc-track" id="nbcTrack">
+      <!-- cards injetados dinamicamente pelo JS abaixo -->
+    </div>
+  </div>
+
+  <div class="nbc-progress-wrap">
+    <div class="nbc-progress-bar"><div class="nbc-progress-thumb" id="nbcThumb"></div></div>
+    <div class="nbc-progress-icon">⟡</div>
+  </div>
+
+</section>
+
+<style>
+.nbc-section {
+  padding: clamp(24px,3vh,48px) 0 clamp(32px,5vh,64px);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+.nbc-header {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.nbc-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--orange);
+}
+.nbc-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(13px,1.4vw,15px); color: var(--text-dim);
+  max-width: 400px; line-height: 1.6;
+}
+.nbc-stage {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%);
+}
+.nbc-stage:active { cursor: grabbing; }
+.nbc-track {
+  display: flex;
+  gap: 20px;
+  padding: 56px 0 60px;
+  width: max-content;
+  will-change: transform;
+  transform-style: preserve-3d;
+  margin: 0;
+}
+.nbc-card {
+  --w: clamp(180px, 17vw, 260px);
+  flex-shrink: 0;
+  width: var(--w);
+  aspect-ratio: 9/16;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  border: 1.5px solid rgba(255,255,255,0.09);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  pointer-events: none;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+.nbc-card::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+}
+.nbc-card:nth-child(6n+1)::before { background: linear-gradient(150deg,#2a0040,#6600aa); }
+.nbc-card:nth-child(6n+2)::before { background: linear-gradient(150deg,#001830,#004d99); }
+.nbc-card:nth-child(6n+3)::before { background: linear-gradient(150deg,#1a1000,#554400); }
+.nbc-card:nth-child(6n+4)::before { background: linear-gradient(150deg,#001a0d,#006633); }
+.nbc-card:nth-child(6n+5)::before { background: linear-gradient(150deg,#1a0008,#660022); }
+.nbc-card:nth-child(6n+6)::before { background: linear-gradient(150deg,#0a0a0a,#303030); }
+.nbc-card.nbc-active {
+  border-color: var(--orange) !important;
+  box-shadow:
+    0 0 0 2px var(--orange),
+    0 0 36px rgba(255,107,0,0.50),
+    0 20px 52px rgba(0,0,0,0.28) !important;
+  z-index: 10;
+}
+.nbc-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative; z-index: 1;
+  pointer-events: none;
+}
+.nbc-card-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 32px 10px 11px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+  z-index: 2; pointer-events: none;
+}
+.nbc-card-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 3px 9px;
+  display: inline-block;
+}
+.nbc-progress-wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin-top: 22px; padding: 0 20px;
+}
+.nbc-progress-bar {
+  width: min(340px, 55vw); height: 3px;
+  background: rgba(0,0,0,0.10); border-radius: 99px;
+  position: relative; overflow: hidden;
+}
+.nbc-progress-thumb {
+  position: absolute; left: 0; top: 0; height: 100%;
+  width: 38%; border-radius: 99px;
+  background: var(--orange);
+}
+.nbc-progress-icon {
+  font-size: 14px; color: var(--text-muted);
+  flex-shrink: 0; user-select: none;
+}
+@media (max-width: 600px) {
+  .nbc-card { --w: clamp(140px, 36vw, 190px); }
+  .nbc-stage {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+}
+
+/* ── nbc inner glow layer ── */
+.nbc-glow-inner {
+  position: absolute; inset: 0; z-index: 1;
+  border-radius: inherit; pointer-events: none;
+}
+</style>
+
+<style>
+/* ── SPOTLIGHT — price cards only, mouse-relative (performant) ── */
+.price-card {
+  --mx: 50%; --my: 50%;
+  --spot-color: rgba(99,130,255,0.18);
+  overflow: hidden;
+}
+.price-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--mx) var(--my), var(--spot-color), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 0;
+}
+.price-card:hover::after { opacity: 1; }
+.price-card.starter  { --spot-color: rgba(99,130,255,0.55); }
+.price-card.pro      { --spot-color: rgba(22,163,74,0.50);  }
+.price-card.agencia  { --spot-color: rgba(167,90,255,0.60); }
+
+/* keep card content above the glow layer */
+.price-card > * { position: relative; z-index: 1; }
+.price-glow-inner { display: none; }
+</style>
+
+<script>
+(function () {
+  const stage = document.getElementById('nbcStage');
+  const track = document.getElementById('nbcTrack');
+
+  /* ── 1. Todos os 23 vídeos com tags ── */
+    const VIDEO_DATA = [
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576454/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok__1_.mp4',  tag: 'TikTok Shop' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576469/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok.mp4',  tag: 'Viral' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576480/saas-tiktok/father_showing_soccer_202604091257.mp4',  tag: 'UGC' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576491/saas-tiktok/flow_-_mar_22_-_2159.mp4',  tag: 'Beleza' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576501/saas-tiktok/generated_video__14_.mp4',  tag: 'Moda' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576514/saas-tiktok/generated_video__39_.mp4',  tag: 'Fitness' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576570/saas-tiktok/generated_video__60_.mp4',  tag: 'Casa' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576588/saas-tiktok/grok-video-539a58af-3ec0-4b88-8991-6d789db5a5d5__2_.mp4',  tag: 'Produto' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576606/saas-tiktok/grok-video-9780d33f-dccf-4a69-85fc-027f1065f9ee.mp4',  tag: 'Tendencia' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576657/saas-tiktok/grok-video-9e39d0f9-9eb4-4d89-a577-9eaf2e8cd65e__1_.mp4',  tag: 'Lifestyle' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576718/saas-tiktok/grok-video-ca237485-5f20-45a0-ad94-a3ba96272344__1_.mp4',  tag: 'Estilo' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576760/saas-tiktok/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre__a_2-0.mp4',  tag: 'Skincare' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576820/saas-tiktok/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre_film-0__2_.mp4',  tag: 'Lifestyle' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576864/saas-tiktok/kling-3_0_a_realistic_vertical_street_interview_recorded_on_an_iphone_16__a_21-year-old_bl-0.mp4',  tag: 'Review' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576897/saas-tiktok/kling-3_0_scene_description_the_video_opens_with_a_close-up_of_a_hand_holding_the_ycz_perf-0.mp4',  tag: 'Esporte' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576909/saas-tiktok/man_holding_artisanal_202604081836.mp4',  tag: 'Promocao' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576924/saas-tiktok/man_organizing_shoes_202604091236.mp4',  tag: 'TikTok Shop' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576933/saas-tiktok/man_showing_framed_202603260421.mp4',  tag: 'Viral' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576940/saas-tiktok/ssstik_io__luchivazquezz_1772249910270.mp4',  tag: 'UGC' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576986/saas-tiktok/veo-3_1-fast-generate-001_someone_filming_on_their_iphone_gets_closer_to_show_the_blanket_texture__vertica-0.mp4',  tag: 'Beleza' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576996/saas-tiktok/woman_holding_serving_202603260403.mp4',  tag: 'Moda' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577004/saas-tiktok/woman_holding_water_202603260325.mp4',  tag: 'Fitness' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577031/saas-tiktok/woman_showing_reversible_202603250537.mp4',  tag: 'Casa' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577041/saas-tiktok/woman_using_cleaning_202603301110.mp4',  tag: 'Produto' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577051/saas-tiktok/woman_with_balloon_202604091241.mp4',  tag: 'Tendencia' },
+    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577068/saas-tiktok/woman_with_puppy_202603260329.mp4',  tag: 'Lifestyle' },
+  ];
+
+  /* ── 2. Fisher-Yates shuffle ── */
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  /* ── 3. 2 cópias IDÊNTICAS do mesmo shuffle → loop seamless ── */
+  function buildTrack() {
+    track.innerHTML = '';
+
+    // Shuffle único e limpo (sem consecutivos repetidos nem fronteira circular repetida)
+    let order = shuffle(VIDEO_DATA);
+    for (let i = 1; i < order.length; i++) {
+      if (order[i].src === order[i - 1].src) {
+        for (let j = i + 1; j < order.length; j++) {
+          if (order[j].src !== order[i - 1].src) { [order[i], order[j]] = [order[j], order[i]]; break; }
+        }
+      }
+    }
+    // Garante que último ≠ primeiro (fronteira do loop)
+    if (order[order.length - 1].src === order[0].src) {
+      for (let j = 1; j < order.length - 1; j++) {
+        if (order[j].src !== order[0].src && order[j].src !== order[order.length - 2].src) {
+          [order[order.length - 1], order[j]] = [order[j], order[order.length - 1]]; break;
+        }
+      }
+    }
+
+    // Renderiza 2 cópias idênticas — quando autoOff chega em setW volta para 0 sem glitch
+    for (let copy = 0; copy < 2; copy++) {
+      order.forEach(({ src, tag }) => {
+        const card = document.createElement('div');
+        card.className = 'nbc-card';
+        card.innerHTML = `
+          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
+          <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
+        track.appendChild(card);
+      });
+    }
+  }
+  buildTrack();
+  const thumb = document.getElementById('nbcThumb');
+  if (!stage || !track) return;
+
+  const VIDEOS_PER_SET = VIDEO_DATA.length;
+  const SPEED          = 0.16;
+  const GAP            = 20;
+  const MAX_ROT_Y      = 38;
+  const MAX_SCALE_D    = 0.18;
+  const MAX_TRANSY     = 18;
+  const MAX_OPACITY_D  = 0.35;
+
+  let autoOff   = 0;
+  let initialized = false;
+  let dragOff   = 0;
+  let dragging  = false;
+  let startX    = 0;
+  let lastTs    = null;
+  let lastActive = null;
+
+  // ── Cached layout (no DOM reads in hot path) ──
+  let cardW   = 0;
+  let stageW  = 0;
+  let cardNodes = [];
+
+  function cacheLayout() {
+    cardNodes = Array.from(track.children);
+    cardW  = cardNodes.length ? cardNodes[0].offsetWidth : 0;
+    stageW = stage.offsetWidth;
+  }
+
+  function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
+
+  /* apply3D: pure math — zero getBoundingClientRect calls per frame */
+  function apply3D(tx) {
+    const halfStage = stageW * 0.55;
+    const stageCenterRel = stageW / 2; // center relative to stage left
+    cardNodes.forEach((card, i) => {
+      // card center relative to stage left = tx + i*(cardW+GAP) + cardW/2
+      const cardCx = tx + i * (cardW + GAP) + cardW / 2;
+      const dist   = cardCx - stageCenterRel;
+      const t      = Math.max(-1, Math.min(1, dist / halfStage));
+      const absT   = Math.abs(t);
+      card.style.transform = `rotateY(${t * MAX_ROT_Y}deg) scale(${1 - absT * MAX_SCALE_D}) translateY(${-MAX_TRANSY * (1 - absT)}px)`;
+      card.style.opacity   = 1 - absT * MAX_OPACITY_D;
+      card.style.zIndex    = Math.round((1 - absT) * 10);
+      if (absT < 0.5) {
+        if (card !== lastActive) {
+          if (lastActive) lastActive.classList.remove('nbc-active');
+          card.classList.add('nbc-active');
+          lastActive = card;
+        }
+      }
+    });
+  }
+
+  function updateProgress(tx) {
+    if (!thumb) return;
+    const sw = setW();
+    const pct = sw > 0 ? (autoOff % sw) / sw : 0;
+    thumb.style.left = (pct * 62) + '%';
+  }
+
+  function tick(ts) {
+    if (!initialized) {
+      cacheLayout();
+      const sw = setW();
+      if (sw > 1 && cardW > 0) {
+        // Começa no meio do set 1 centralizado no stage
+        autoOff = sw / 2 - stageW / 2;
+        if (autoOff < 0) autoOff = 0;
+        initialized = true;
+      }
+    }
+
+    if (lastTs !== null && !dragging) {
+      const dt = Math.min(ts - lastTs, 32);
+      autoOff += SPEED * dt;
+      const sw = setW();
+      // Wrap seamless: set 2 é idêntico ao set 1, então subtrair sw é invisível
+      if (sw > 0 && autoOff >= sw) autoOff -= sw;
+      if (sw > 0 && autoOff < 0) autoOff += sw;
+    }
+    lastTs = ts;
+
+    const tx = -(autoOff - dragOff);
+    track.style.transform = 'translateX(' + tx + 'px)';
+    apply3D(tx);
+    updateProgress();
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // Re-cache on resize
+  window.addEventListener('resize', () => { cacheLayout(); initialized = false; }, { passive: true });
+
+  function onDown(e) {
+    dragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    dragOff = startX - (e.touches ? e.touches[0].clientX : e.clientX);
+  }
+  function onUp() {
+    if (!dragging) return;
+    dragging = false;
+    autoOff += dragOff;
+    const sw = setW();
+    if (sw > 0) autoOff = ((autoOff % sw) + sw) % sw;
+    dragOff = 0;
+    lastTs = null;
+  }
+
+  stage.addEventListener('mousedown',  onDown, { passive: true });
+  stage.addEventListener('mousemove',  onMove, { passive: true });
+  stage.addEventListener('mouseup',    onUp);
+  stage.addEventListener('mouseleave', onUp);
+  stage.addEventListener('touchstart', onDown, { passive: true });
+  stage.addEventListener('touchmove',  onMove, { passive: true });
+  stage.addEventListener('touchend',   onUp);
+})();
+</script>
+
+<!-- CONHEÇA A UGC·AI — dark showcase -->
+<section class="showcase-section" id="gerador">
+  <div class="showcase-header reveal">
+    <h2 class="showcase-title">Conheça a <span class="showcase-brand">UGC·AI</span> <span class="showcase-emoji">🤖</span> a ferramenta mais<br>completa para TikTok Shop do Brasil!</h2>
+    <div class="showcase-divider"></div>
+  </div>
+
+  <!-- Tab switcher above mockup -->
+  <div style="display:flex;justify-content:center;gap:8px;margin-bottom:20px;">
+    <div id="tab-lote" onclick="switchTab('lote')" class="sc-tab sc-tab-active">⚡ Modo Lote</div>
+    <div id="tab-galeria" onclick="switchTab('galeria')" class="sc-tab sc-tab-inactive">🖼 Galeria</div>
+  </div>
+
+  <!-- App mockup shell -->
+  <div class="showcase-mockup reveal" style="max-width:960px;">
+    <!-- titlebar -->
+    <div class="sc-titlebar">
+      <div class="sc-dots"><span></span><span></span><span></span></div>
+      <div class="sc-nav">
+        <span class="sc-nav-item active">✦ Gerar</span>
+        <span class="sc-nav-item">🖼 Galeria</span>
+      </div>
+      <div class="sc-nav-meta">24/30 ⚡ &nbsp; 🔔</div>
+    </div>
+
+    <!-- LOTE VIEW -->
+    <div id="view-lote" style="display:grid;grid-template-columns:300px 1fr;min-height:420px;">
+
+      <!-- left sidebar -->
+      <div style="background:#161616;border-right:1px solid rgba(255,255,255,0.07);padding:16px;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Configurar Conteúdo</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,0.05);border-radius:10px;padding:3px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);padding:7px;text-align:center;">⚡ Individual</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:white;background:var(--iridescent);border-radius:8px;padding:7px;text-align:center;">🗂 Lote</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Gênero do Criador</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:white;background:rgba(255,107,0,0.85);border-radius:8px;padding:7px 4px;text-align:center;">🧑 Neutro</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👩 Fem.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👨 Masc.</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Imagens dos produtos — <span style="color:var(--orange);">9/20</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;overflow:hidden;">🌮<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">👟<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">🔪<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🧴</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">💡</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">👗</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🎒</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">☕</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🌸</div>
+        </div>
+        <div style="margin-top:auto;background:var(--iridescent);border-radius:100px;padding:11px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:white;">✦ Gerar Prompts com IA</div>
+      </div>
+
+      <!-- right panel — results -->
+      <div style="background:#111;padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:420px;">
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🌮</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;">Produto 1 — takis_fuego.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:#4ade80;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:50px;padding:3px 10px;">✓ pronto</div>
+          </div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>🎬 Prompt Vídeo UGC</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+            </div>
+            <div style="position:relative;">
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.15);width:92%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.12);width:78%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.09);width:85%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.06);width:70%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.04);width:60%;"></div>
+              </div>
+              <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,transparent,#1a1a1a);pointer-events:none;"></div>
+              <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;">🔒 <span>Faça upgrade para ver o prompt completo</span></div>
+            </div>
+            <div style="margin-top:6px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>✍️ Legenda</div>
+                <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+              </div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">Pedi esse produto no TikTok Shop e chegou <strong style="color:rgba(255,255,255,0.8);">absurdamente</strong> melhor do que esperava 😱 recomendo demais! #tiktokshop #achados #compraonline</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;opacity:0.7;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">👟</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Produto 2 — tenis_rosa.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,180,0,0.8);background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.2);border-radius:50px;padding:3px 10px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:rgba(255,180,0,0.8);animation:livePulse 1s infinite;"></span>processando...</div>
+          </div>
+        </div>
+        <div style="background:#161616;border:1px solid rgba(255,255,255,0.04);border-radius:12px;overflow:hidden;opacity:0.45;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#1e1e1e;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🔪</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);">Produto 3 — faca_churrasco.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:3px 10px;">na fila</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERIA VIEW -->
+    <div id="view-galeria" style="display:none;padding:16px;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">🌮<div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div></div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Takis Fuego Gigante</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">☕<div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div></div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Chaleira de Vidro</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🏆</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Quadros SP FC</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">👟</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Sapatilha Rosa</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">💡</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Ring Light 10 Pol.</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">📦</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Potes 2.2L</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🔪</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Faca Churrasco</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">❤️</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Romântico</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div></div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);text-align:center;letter-spacing:1px;">8 PROMPTS SALVOS · CLIQUE PARA VER OU REGENERAR</div>
+    </div>
+  </div>
+
+  <!-- stat labels below mockup -->
+  <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:1;">
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">Modo Lote</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Gere até 20 produtos de uma vez</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">Galeria</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Todo prompt salvo automaticamente</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#ff8c3a;margin-bottom:6px;font-weight:700;">~3 segundos</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.82);font-weight:500;">Por produto gerado</div>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchTab(tab) {
+  const lote = document.getElementById('view-lote');
+  const galeria = document.getElementById('view-galeria');
+  const tabLote = document.getElementById('tab-lote');
+  const tabGaleria = document.getElementById('tab-galeria');
+  if (tab === 'lote') {
+    lote.style.display = 'grid';
+    galeria.style.display = 'none';
+    tabLote.className = 'sc-tab sc-tab-active';
+    tabGaleria.className = 'sc-tab sc-tab-inactive';
+  } else {
+    lote.style.display = 'none';
+    galeria.style.display = 'block';
+    tabGaleria.className = 'sc-tab sc-tab-active';
+    tabLote.className = 'sc-tab sc-tab-inactive';
+  }
+}
+</script>
+
+<!-- APP MOCKUP merged into showcase-section below -->
+<!--REMOVED_START--><template>
+
+    <!-- Tab switcher above mockup -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:16px;">
+      <div id="tab-lote" onclick="switchTab('lote')" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:white;background:var(--iridescent);border-radius:50px;padding:7px 22px;cursor:pointer;font-weight:700;">⚡ Modo Lote</div>
+      <div id="tab-galeria" onclick="switchTab('galeria')" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.07);border-radius:50px;padding:7px 22px;cursor:pointer;border:1px solid rgba(255,255,255,0.1);">🖼 Galeria</div>
+    </div>
+
+    <div style="background:#111;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.28),0 4px 16px rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.08);">
+      <!-- titlebar -->
+      <div style="padding:10px 18px;background:#1a1a1a;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:12px;">
+        <div style="display:flex;gap:6px;flex:1;">
+          <div style="width:11px;height:11px;border-radius:50%;background:#FF5F57;"></div>
+          <div style="width:11px;height:11px;border-radius:50%;background:#FEBC2E;"></div>
+          <div style="width:11px;height:11px;border-radius:50%;background:#28C840;"></div>
+        </div>
+        <div style="display:flex;gap:2px;background:rgba(255,255,255,0.06);border-radius:50px;padding:3px;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:white;background:var(--iridescent);border-radius:50px;padding:4px 16px;">✦ Gerar</div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.4);padding:4px 16px;">🖼 Galeria</div>
+        </div>
+        <div style="flex:1;"></div>
+      </div>
+
+      <!-- LOTE VIEW -->
+      <div id="view-lote" style="display:grid;grid-template-columns:300px 1fr;min-height:420px;">
+        <!-- left panel -->
+        <div style="background:#161616;border-right:1px solid rgba(255,255,255,0.07);padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Configurar Conteúdo</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,0.05);border-radius:10px;padding:3px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);padding:7px;text-align:center;">⚡ Individual</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:white;background:var(--iridescent);border-radius:8px;padding:7px;text-align:center;">🗂 Lote</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Gênero do Criador</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:white;background:rgba(255,107,0,0.85);border-radius:8px;padding:7px 4px;text-align:center;">🧑 Neutro</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👩 Fem.</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👨 Masc.</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Imagens dos produtos — <span style="color:var(--orange);">9/20</span></div>
+          <!-- product grid -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;overflow:hidden;">🌮<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">👟<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">🔪<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🧴</div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">💡</div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">👗</div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🎒</div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">☕</div>
+            <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🌸</div>
+          </div>
+          <div style="margin-top:auto;background:var(--iridescent);border-radius:100px;padding:11px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:white;">✦ Gerar Prompts com IA</div>
+        </div>
+
+        <!-- right panel — results with censored prompts -->
+        <div style="background:#111;padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:420px;">
+
+          <!-- product card 1 — done -->
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🌮</div>
+                <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;">Produto 1 — takis_fuego.png</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:9px;color:#4ade80;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:50px;padding:3px 10px;">✓ pronto</div>
+            </div>
+            <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+              <!-- prompt censored -->
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>🎬 Prompt Vídeo UGC</div>
+                <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+              </div>
+              <!-- 3 lines visible then fade -->
+              <div style="position:relative;">
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.15);width:92%;"></div>
+                  <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.12);width:78%;"></div>
+                  <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.09);width:85%;"></div>
+                  <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.06);width:70%;"></div>
+                  <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.04);width:60%;"></div>
+                </div>
+                <!-- fade overlay -->
+                <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,transparent,#1a1a1a);pointer-events:none;"></div>
+                <!-- lock badge -->
+                <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px;">🔒 <span>Faça upgrade para ver o prompt completo</span></div>
+              </div>
+              <!-- legenda visible -->
+              <div style="margin-top:6px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>✍️ Legenda</div>
+                  <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+                </div>
+                <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">Pedi esse produto no TikTok Shop e chegou <strong style="color:rgba(255,255,255,0.8);">absurdamente</strong> melhor do que esperava 😱 recomendo demais! #tiktokshop #achados #compraonline</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- product card 2 — processing -->
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;opacity:0.7;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">👟</div>
+                <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Produto 2 — tenis_rosa.png</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,180,0,0.8);background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.2);border-radius:50px;padding:3px 10px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:rgba(255,180,0,0.8);animation:livePulse 1s infinite;"></span>processando...</div>
+            </div>
+          </div>
+
+          <!-- product card 3 — queued -->
+          <div style="background:#161616;border:1px solid rgba(255,255,255,0.04);border-radius:12px;overflow:hidden;opacity:0.45;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;background:#1e1e1e;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🔪</div>
+                <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);">Produto 3 — faca_churrasco.png</div>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:3px 10px;">na fila</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- GALERIA VIEW (hidden by default) -->
+      <div id="view-galeria" style="display:none;padding:16px;">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+
+          <!-- gallery items -->
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">🌮
+              <div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div>
+            </div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Takis Fuego Gigante</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">☕
+              <div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div>
+            </div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Chaleira de Vidro</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🏆
+              <div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div>
+            </div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Quadros SP FC</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">👟</div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Sapatilha Rosa</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">💡</div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Ring Light 10 Pol.</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">📦</div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Potes 2.2L</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🔪</div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Faca Churrasco</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div>
+            </div>
+          </div>
+
+          <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+            <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">❤️</div>
+            <div style="padding:8px 10px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Romântico</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);text-align:center;letter-spacing:1px;">8 PROMPTS SALVOS · CLIQUE PARA VER OU REGENERAR</div>
+      </div>
+
+    </div>
+
+    <!-- labels below -->
+    <div style="display:flex;justify-content:center;gap:32px;margin-top:20px;">
+      <div style="text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">Modo Lote</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);">Gere até 20 produtos de uma vez</div>
+      </div>
+      <div style="width:1px;background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">Galeria</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);">Todo prompt salvo automaticamente</div>
+      </div>
+      <div style="width:1px;background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">~3 segundos</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text-dim);">Por produto gerado</div>
+      </div>
+    </div>
+
+  </div>
+</template><!--REMOVED_END-->
+
+<!-- COMO FUNCIONA — STEP CARDS -->
+<section class="content-section" id="como-funciona" style="background:linear-gradient(160deg,#06091a 0%,#0d1235 50%,#080c22 100%);position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(120,60,255,0.10) 0%,transparent 55%),radial-gradient(ellipse 40% 30% at 20% 80%,rgba(255,107,0,0.08) 0%,transparent 50%),radial-gradient(ellipse 40% 30% at 80% 20%,rgba(0,140,255,0.07) 0%,transparent 50%);pointer-events:none;z-index:0;"></div>
+<div style="position:relative;z-index:1;width:100%;">
+  <div class="section-header reveal" style="text-align:center;align-items:center;display:flex;flex-direction:column;">
+    <h2 class="section-title" style="font-size:clamp(40px,7vw,96px);letter-spacing:-3px;text-align:center;width:100%;color:white;">VÍDEO PRONTO<br><em>EM 3 PASSOS</em></h2>
+  </div>
+  <div class="steps-cards">
+    <div class="step-card reveal">
+      <div class="step-card-visual orange-tint">
+        <div class="visual-upload">
+          <div class="visual-upload-header">
+            <div class="visual-upload-dot"></div>
+            <div class="visual-upload-label">ENVIAR PRODUTO</div>
+          </div>
+          <div class="visual-upload-body">
+            <div class="visual-drop-zone">
+              <div class="visual-drop-icon">📦</div>
+              <div class="visual-drop-text">produto_camiseta.jpg</div>
+              <div class="visual-drop-hint">JPG · PNG · WEBP até 10MB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-card-content">
+        <div class="step-number">1</div>
+        <div class="step-card-title">Envie a foto do produto</div>
+        <div class="step-card-desc">Arraste ou clique para enviar a imagem. A IA analisa o produto automaticamente e já entende o que precisa criar.</div>
+      </div>
+    </div>
+
+    <div class="step-card reveal">
+      <div class="step-card-visual purple-tint">
+        <div class="visual-config">
+          <div class="visual-config-header">
+            <div class="section-label">CONFIGURAR CONTEÚDO</div>
+          </div>
+          <div class="visual-config-body">
+            <div>
+              <div class="vc-label">Tipo de vídeo</div>
+              <div class="vc-chips">
+                <div class="vc-chip active">🏠 Caseiro</div>
+                <div class="vc-chip">🏭 Fábrica</div>
+                <div class="vc-chip">👁 POV</div>
+              </div>
+            </div>
+            <div>
+              <div class="vc-label">Gênero do criador</div>
+              <div class="vc-chips">
+                <div class="vc-chip active">👩 Feminino</div>
+                <div class="vc-chip">👨 Masculino</div>
+              </div>
+            </div>
+            <div>
+              <div class="vc-label">Promoção ativa</div>
+              <div class="vc-chips">
+                <div class="vc-chip active">🚫 Sem promo</div>
+                <div class="vc-chip">⚡ Relâmpago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-card-content">
+        <div class="step-number">2</div>
+        <div class="step-card-title">Configure o conteúdo</div>
+        <div class="step-card-desc">Escolha o estilo de vídeo, o gênero do criador, promoção ativa e preço. Tudo em cliques rápidos, sem formulário complicado.</div>
+      </div>
+    </div>
+
+    <div class="step-card reveal">
+      <div class="step-card-visual blue-tint">
+        <div class="visual-output">
+          <div class="visual-output-header">
+            <div class="visual-output-tag"><span class="vo-dot"></span>🎬 PROMPT UGC</div>
+            <div class="visual-copy-btn">⎘ COPIAR</div>
+          </div>
+          <div class="visual-output-body">
+            <span class="vo-line" style="width:88%"></span>
+            <span class="vo-line" style="width:74%"></span>
+            <span class="vo-line" style="width:92%"></span>
+            <span class="vo-line" style="width:60%"></span>
+          </div>
+          <div style="border-top:1px solid var(--border); margin-top:4px;">
+            <div class="visual-output-header">
+              <div class="visual-output-tag"><span class="vo-dot"></span>✍️ LEGENDA</div>
+              <div class="visual-copy-btn">⎘ COPIAR</div>
+            </div>
+            <div class="visual-output-body">
+              <span class="vo-line" style="width:80%"></span>
+              <span class="vo-line" style="width:65%"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-card-content">
+        <div class="step-number">3</div>
+        <div class="step-card-title">Copie e mande gravar</div>
+        <div class="step-card-desc">Prompt detalhado + legenda pronta chegam em ~3 segundos. Um clique para copiar e mandar pro criador gravar na hora.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- showcase moved above — duplicate removed -->
+<section class="showcase-section" id="gerador-old" style="display:none!important;">
+  <div class="showcase-header reveal">
+    <h2 class="showcase-title">Conheça a <span class="showcase-brand">UGC·AI</span> <span class="showcase-emoji">🤖</span> a ferramenta mais<br>completa para TikTok Shop do Brasil!</h2>
+    <div class="showcase-divider"></div>
+  </div>
+
+  <!-- Tab switcher above mockup -->
+  <div style="display:flex;justify-content:center;gap:8px;margin-bottom:20px;">
+    <div id="tab-lote" onclick="switchTab('lote')" class="sc-tab sc-tab-active">⚡ Modo Lote</div>
+    <div id="tab-galeria" onclick="switchTab('galeria')" class="sc-tab sc-tab-inactive">🖼 Galeria</div>
+  </div>
+
+  <!-- App mockup shell -->
+  <div class="showcase-mockup reveal" style="max-width:960px;">
+    <!-- titlebar -->
+    <div class="sc-titlebar">
+      <div class="sc-dots"><span></span><span></span><span></span></div>
+      <div class="sc-nav">
+        <span class="sc-nav-item active">✦ Gerar</span>
+        <span class="sc-nav-item">🖼 Galeria</span>
+      </div>
+      <div class="sc-nav-meta">24/30 ⚡ &nbsp; 🔔</div>
+    </div>
+
+    <!-- LOTE VIEW -->
+    <div id="view-lote" style="display:grid;grid-template-columns:300px 1fr;min-height:420px;">
+
+      <!-- left sidebar -->
+      <div style="background:#161616;border-right:1px solid rgba(255,255,255,0.07);padding:16px;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Configurar Conteúdo</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,0.05);border-radius:10px;padding:3px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.4);padding:7px;text-align:center;">⚡ Individual</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:white;background:var(--iridescent);border-radius:8px;padding:7px;text-align:center;">🗂 Lote</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Gênero do Criador</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:white;background:rgba(255,107,0,0.85);border-radius:8px;padding:7px 4px;text-align:center;">🧑 Neutro</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👩 Fem.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 4px;text-align:center;">👨 Masc.</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Imagens dos produtos — <span style="color:var(--orange);">9/20</span></div>
+        <!-- product grid 3×3 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;overflow:hidden;">🌮<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">👟<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">🔪<div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:rgba(0,0,0,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:white;">✕</div></div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🧴</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">💡</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">👗</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🎒</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">☕</div>
+          <div style="aspect-ratio:1;background:#222;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:20px;">🌸</div>
+        </div>
+        <div style="margin-top:auto;background:var(--iridescent);border-radius:100px;padding:11px;text-align:center;font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:white;">✦ Gerar Prompts com IA</div>
+      </div>
+
+      <!-- right panel — results -->
+      <div style="background:#111;padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:420px;">
+
+        <!-- product card 1 — pronto -->
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🌮</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;">Produto 1 — takis_fuego.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:#4ade80;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:50px;padding:3px 10px;">✓ pronto</div>
+          </div>
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>🎬 Prompt Vídeo UGC</div>
+              <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+            </div>
+            <div style="position:relative;">
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.15);width:92%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.12);width:78%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.09);width:85%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.06);width:70%;"></div>
+                <div style="height:7px;border-radius:4px;background:rgba(255,255,255,0.04);width:60%;"></div>
+              </div>
+              <div style="position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,transparent,#1a1a1a);pointer-events:none;"></div>
+              <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;">🔒 <span>Faça upgrade para ver o prompt completo</span></div>
+            </div>
+            <div style="margin-top:6px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--orange);"></div>✍️ Legenda</div>
+                <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:2px 8px;">⎘ COPIAR</div>
+              </div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.55);line-height:1.6;">Pedi esse produto no TikTok Shop e chegou <strong style="color:rgba(255,255,255,0.8);">absurdamente</strong> melhor do que esperava 😱 recomendo demais! #tiktokshop #achados #compraonline</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- product card 2 — processando -->
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;opacity:0.7;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">👟</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Produto 2 — tenis_rosa.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,180,0,0.8);background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.2);border-radius:50px;padding:3px 10px;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:rgba(255,180,0,0.8);animation:livePulse 1s infinite;"></span>processando...</div>
+          </div>
+        </div>
+
+        <!-- product card 3 — na fila -->
+        <div style="background:#161616;border:1px solid rgba(255,255,255,0.04);border-radius:12px;overflow:hidden;opacity:0.45;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:28px;height:28px;background:#1e1e1e;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;">🔪</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);">Produto 3 — faca_churrasco.png</div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:3px 10px;">na fila</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GALERIA VIEW (hidden by default) -->
+    <div id="view-galeria" style="display:none;padding:16px;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">🌮<div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div></div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Takis Fuego Gigante</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;">☕<div style="position:absolute;top:6px;right:6px;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);border-radius:50px;padding:2px 7px;font-family:'DM Mono',monospace;font-size:7px;color:#4ade80;">✓</div></div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Chaleira de Vidro</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🏆</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Quadros SP FC</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:19</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">👟</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Sapatilha Rosa</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">💡</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Ring Light 10 Pol.</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">📦</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Potes 2.2L</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">🔪</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Faca Churrasco</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:18</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,107,0,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="aspect-ratio:1;background:#222;display:flex;align-items:center;justify-content:center;font-size:36px;">❤️</div>
+          <div style="padding:8px 10px;"><div style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,0.7);font-weight:600;margin-bottom:2px;">Kit Romântico</div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);">11/04 · 07:17</div></div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);text-align:center;letter-spacing:1px;">8 PROMPTS SALVOS · CLIQUE PARA VER OU REGENERAR</div>
+    </div>
+
+  </div>
+
+  <!-- stat labels below mockup -->
+  <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">Modo Lote</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.45);">Gere até 20 produtos de uma vez</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">Galeria</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.45);">Todo prompt salvo automaticamente</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+    <div style="text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;">~3 segundos</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.45);">Por produto gerado</div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+function switchTab(tab) {
+  const lote = document.getElementById('view-lote');
+  const galeria = document.getElementById('view-galeria');
+  const tabLote = document.getElementById('tab-lote');
+  const tabGaleria = document.getElementById('tab-galeria');
+  if (tab === 'lote') {
+    lote.style.display = 'grid';
+    galeria.style.display = 'none';
+    tabLote.className = 'sc-tab sc-tab-active';
+    tabGaleria.className = 'sc-tab sc-tab-inactive';
+  } else {
+    lote.style.display = 'none';
+    galeria.style.display = 'block';
+    tabGaleria.className = 'sc-tab sc-tab-active';
+    tabLote.className = 'sc-tab sc-tab-inactive';
+  }
+}
+</script>
+
+<style>
+/* ── COMO FUNCIONA — layout ── */
+#como-funciona {
+  scroll-margin-top: 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── COMO FUNCIONA — bottom fade into pricing dark ── */
+#como-funciona::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    rgba(6,9,26,0)   0%,
+    #08091a          100%
+  );
+  pointer-events: none; z-index: 0;
+}
+
+/* ── COMO FUNCIONA — dark mode overrides ── */
+#como-funciona .step-card {
+  background: #161622;
+  border-color: rgba(255,255,255,0.09);
+}
+#como-funciona .step-card:hover {
+  border-color: rgba(255,107,0,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+#como-funciona .step-card-visual {
+  background: #1e1e2e;
+  border-bottom-color: rgba(255,255,255,0.07);
+}
+#como-funciona .step-card-visual.orange-tint { background: rgba(255,107,0,0.08); }
+#como-funciona .step-card-visual.purple-tint { background: rgba(138,79,255,0.08); }
+#como-funciona .step-card-visual.blue-tint   { background: rgba(0,120,255,0.08); }
+#como-funciona .step-card-title { color: white; }
+#como-funciona .step-card-desc  { color: rgba(255,255,255,0.5); }
+#como-funciona .visual-upload { background: #161622; border-color: rgba(255,255,255,0.08); box-shadow: none; }
+#como-funciona .visual-upload-header { background: #1e1e2e; border-bottom-color: rgba(255,255,255,0.07); }
+#como-funciona .visual-upload-label { color: rgba(255,255,255,0.3); }
+#como-funciona .visual-drop-zone { border-color: rgba(255,107,0,0.25); background: rgba(255,107,0,0.05); }
+#como-funciona .visual-drop-text { color: var(--orange); }
+#como-funciona .visual-drop-hint { color: rgba(255,255,255,0.25); }
+#como-funciona .visual-config { background: #161622; border-color: rgba(255,255,255,0.08); box-shadow: none; }
+#como-funciona .visual-config-header { background: #1e1e2e; border-bottom-color: rgba(255,255,255,0.07); }
+#como-funciona .vc-label { color: rgba(255,255,255,0.3); }
+#como-funciona .vc-chip { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); }
+#como-funciona .vc-chip.active { background: var(--orange); border-color: var(--orange); color: white; }
+#como-funciona .visual-output { background: #161622; border-color: rgba(255,255,255,0.08); box-shadow: none; }
+#como-funciona .visual-output-header { background: #1e1e2e; border-bottom-color: rgba(255,255,255,0.07); }
+#como-funciona .visual-output-tag { color: rgba(255,255,255,0.35); }
+#como-funciona .visual-copy-btn { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.1); }
+#como-funciona .vo-line { background: rgba(255,255,255,0.10); }
+#como-funciona .section-label { color: rgba(255,255,255,0.3); }
+
+/* ── SHOWCASE LIGHT ── */
+.showcase-section {
+  background: linear-gradient(
+    to bottom,
+    #F6F8FF  0%,
+    #F6F8FF  35%,
+    #dce0f5  46%,
+    #b0b8e0  55%,
+    #7080c8  63%,
+    #3a4ea8  70%,
+    #1a2878  77%,
+    #0e1850  83%,
+    #0a1240  88%,
+    #080e32  93%,
+    #06091a  100%
+  );
+  padding: clamp(64px,10vh,120px) clamp(20px,5vw,64px);
+  overflow: hidden;
+  position: relative;
+}
+.showcase-section > * { position: relative; z-index: 1; }
+.showcase-section::after { display: none; }
+.showcase-header { text-align: center; margin-bottom: 48px; }
+.showcase-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(28px,4vw,56px); font-weight: 800;
+  letter-spacing: -2px; line-height: 1.1; color: var(--text);
+  margin-bottom: 24px;
+}
+.showcase-brand {
+  background: var(--iridescent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.showcase-emoji { -webkit-text-fill-color: initial; }
+.showcase-divider {
+  width: 220px; height: 2px;
+  background: rgba(0,0,0,0.1);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* tab switcher */
+.sc-tab {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 1px; border-radius: 50px;
+  padding: 7px 22px; cursor: pointer; font-weight: 700;
+  transition: all 0.2s;
+}
+.sc-tab-active {
+  color: white; background: var(--iridescent);
+  box-shadow: 0 2px 16px rgba(255,102,0,0.25);
+}
+.sc-tab-inactive {
+  color: var(--text-dim);
+  background: rgba(30,50,130,0.08);
+  border: 1px solid var(--border-med);
+}
+
+/* mockup shell */
+.showcase-mockup {
+  margin: 0 auto;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.28), 0 4px 16px rgba(0,0,0,0.18);
+}
+.sc-titlebar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px 18px;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sc-dots { display: flex; gap: 6px; }
+.sc-dots span { width: 11px; height: 11px; border-radius: 50%; }
+.sc-dots span:nth-child(1) { background: #FF5F57; }
+.sc-dots span:nth-child(2) { background: #FEBC2E; }
+.sc-dots span:nth-child(3) { background: #28C840; }
+.sc-nav {
+  display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,0.06); border-radius: 50px; padding: 3px;
+  margin: 0 auto;
+}
+.sc-nav-item {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  padding: 4px 16px; border-radius: 50px; cursor: default;
+  color: rgba(255,255,255,0.4);
+}
+.sc-nav-item.active {
+  background: var(--iridescent); color: white; font-weight: 700;
+}
+.sc-nav-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); white-space: nowrap; }
+
+@media (max-width: 680px) {
+  .showcase-mockup { border-radius: 14px; }
+  #view-lote { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<!-- PRICING -->
+<section class="content-section" id="pricing" style="background:#08091a;">
+  <div class="section-header reveal">
+    <h2 class="section-title" style="font-size:clamp(48px,7.65vw,95px);letter-spacing:-3px;color:white;">Escolha seu plano<br><em style="font-style:normal;background:var(--iridescent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">e comece hoje</em></h2>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- STARTER -->
+    <div class="price-card starter reveal">
+      <div class="price-badge badge-promo">🔥 PROMOÇÃO LIMITADA</div>
+      <div class="price-plan">Starter</div>
+      <div class="price-original">R$ 99,90</div>
+      <div class="price-value"><sup>R$</sup>69<span style="font-size:28px;">,90</span></div>
+      <div class="price-period">por mês · créditos renovam todo mês</div>
+      <ul class="price-list">
+        <li>200 gerações por mês</li>
+        <li>Modo individual</li>
+        <li>Prompt vídeo + legenda</li>
+        <li>Galeria (últimos 10 prompts)</li>
+        <li class="off">Modo lote (até 20 produtos)</li>
+        <li class="off">Suporte prioritário</li>
+        <li class="off">Estilos exclusivos</li>
+      </ul>
+      <a href="#" class="btn-price-plan">Começar com Starter →</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="price-card pro reveal">
+      <div class="price-badge badge-promo">⚡ MAIS VENDIDO</div>
+      <div class="price-plan">Pro</div>
+      <div class="price-original">R$ 197,00</div>
+      <div class="price-value"><sup>R$</sup>127<span style="font-size:28px;">,90</span></div>
+      <div class="price-period">por mês · créditos renovam todo mês</div>
+      <ul class="price-list">
+        <li>500 gerações por mês</li>
+        <li>Modo individual</li>
+        <li>Prompt vídeo + legenda</li>
+        <li>Galeria completa de prompts</li>
+        <li>Modo lote (até 20 produtos)</li>
+        <li>Suporte prioritário</li>
+        <li class="off">Estilos exclusivos Agência</li>
+      </ul>
+      <a href="#" class="btn-price-plan">Quero o Pro →</a>
+    </div>
+
+    <!-- AGÊNCIA -->
+    <div class="price-card agencia reveal">
+      <div class="price-badge badge-premium">👑 PREMIUM</div>
+      <div class="price-plan">Agência</div>
+      <div class="price-original" style="color:rgba(255,255,255,0.3);">R$ 397,00</div>
+      <div class="price-value"><sup>R$</sup>247<span style="font-size:30px;">,90</span></div>
+      <div class="price-period">por mês · créditos renovam todo mês</div>
+      <ul class="price-list">
+        <li>1.200 gerações por mês</li>
+        <li style="color:#e9b8ff;">+ 300 gerações bônus 🎁</li>
+        <li>Modo individual</li>
+        <li>Prompt vídeo + legenda</li>
+        <li>Galeria completa de prompts</li>
+        <li>Modo lote (até 20 produtos)</li>
+        <li>Suporte prioritário + onboarding</li>
+        <li style="color:#e9b8ff;font-weight:700;">Todos os estilos exclusivos</li>
+      </ul>
+      <a href="#" class="btn-price-plan">✦ Quero o Agência →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- POST-PRICING CTA BANNER -->
+<section class="post-pricing-cta">
+  <div class="ppc-inner reveal">
+    <h2 class="ppc-title"><span class="ppc-line1">VOCÊ NUNCA MAIS VAI PRECISAR</span><span class="ppc-gradient">GRAVAR NENHUM VÍDEO</span></h2>
+    <p class="ppc-sub">DEIXE QUE A IA TRABALHE POR VOCÊ COM APENAS UM CLICK.</p>
+    <a href="#pricing" class="ppc-btn">✦ Quero começar agora</a>
+  </div>
+</section>
+
+<style>
+.post-pricing-cta {
+  background: linear-gradient(160deg,#06091a 0%,#0d1235 50%,#080c22 100%);
+  padding: clamp(80px,14vh,160px) clamp(20px,5vw,64px);
+  text-align: center; position: relative; overflow: hidden;
+  border: none; margin-bottom: -1px;
+}
+.post-pricing-cta::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(to bottom, #06091a 0%, rgba(6,9,26,0) 22%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(120,60,255,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 10% 85%, rgba(255,107,0,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 90% 15%, rgba(0,140,255,0.08) 0%, transparent 55%);
+}
+.post-pricing-cta::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:480px;
+  background: linear-gradient(
+    to bottom,
+    rgba(80,90,120,0)      0%,
+    rgba(85,97,135,0.20)   18%,
+    rgba(108,120,165,0.42) 36%,
+    rgba(145,158,200,0.62) 54%,
+    rgba(185,192,225,0.80) 72%,
+    rgba(215,220,238,0.92) 86%,
+    #EDF0F9                100%
+  );
+  pointer-events:none; z-index:0;
+}
+.ppc-inner { position:relative; z-index:1; max-width:960px; margin:0 auto; }
+.ppc-title {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:900; letter-spacing:-2px; line-height:1.0;
+  color:white; text-transform:uppercase; margin-bottom:24px;
+  font-size: clamp(28px,5vw,72px);
+}
+.ppc-line1 {
+  display:block;
+  white-space: nowrap;
+  margin-bottom:0;
+}
+.ppc-gradient {
+  background: var(--iridescent);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.ppc-sub {
+  font-family:'DM Mono',monospace; font-size:clamp(10px,1.1vw,13px);
+  letter-spacing:3px; color:rgba(255,255,255,0.45);
+  text-transform:uppercase; margin-bottom:40px;
+}
+.ppc-btn {
+  display:inline-block;
+  background:transparent; border:2px solid rgba(255,255,255,0.55);
+  color:white; font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(14px,1.4vw,16px); font-weight:700;
+  padding:16px 40px; border-radius:100px; text-decoration:none;
+  letter-spacing:-0.3px;
+  transition:background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+.ppc-btn:hover {
+  background:rgba(255,255,255,0.1); border-color:white;
+  box-shadow:0 0 32px rgba(255,255,255,0.18);
+  transform:translateY(-2px);
+}
+</style>
+
+<!-- FAQ -->
+<section class="content-section" style="border-top:none;">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">Dúvidas frequentes</p>
+    <h2 class="section-title" style="font-size:clamp(24px,3.5vw,44px)">FAQ</h2>
+  </div>
+  <div class="faq-wrap reveal">
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">O que é um "prompt de vídeo UGC"? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">É um roteiro detalhado que você manda para o criador antes de gravar. Inclui tipo de cena, expressão facial, movimentação de câmera, ritmo de edição e falas sugeridas. Quanto mais detalhado, mais autêntico e eficiente fica o vídeo para vender no TikTok Shop.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">Precisa saber escrever prompts para usar? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">Não. Basta enviar a foto do produto e clicar em Gerar. A IA analisa o produto e cria o prompt automaticamente.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">Como funciona o modo lote? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">Você sobe até 20 fotos de produtos de uma vez. A ferramenta processa cada um e gera prompt + legenda para cada produto. Tudo fica salvo na galeria.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">Funciona para qualquer nicho? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">Sim. A IA analisa a imagem e adapta o prompt ao produto. Funciona para moda, beleza, eletrônicos, casa, alimentos, acessórios e muito mais.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">O acesso expira? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">Não. É pagamento único e acesso vitalício. Uma vez comprado, você usa para sempre sem mensalidade.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-btn" onclick="faq(this)">O que conta como uma "geração"? <span class="faq-icon">+</span></button>
+      <div class="faq-ans">Cada vez que você clica em "Gerar Prompts" para um produto conta como uma geração. Starter inclui 100, Pro inclui 500, Agência tem gerações ilimitadas.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <a class="logo" href="#">
+    <div class="logo-mark">U</div>
+    <span class="logo-name">UGC<em>·</em>AI</span>
+  </a>
+  <div class="footer-copy">© 2025 UGC·AI · TikTok Shop Brasil · Todos os direitos reservados</div>
+</footer>
+
+<script>
+  function faq(btn) { btn.parentElement.classList.toggle('open'); }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+
+  // ── SPOTLIGHT — price cards, mouse-relative (lightweight) ────────────
+  document.querySelectorAll('.price-card').forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const r = this.getBoundingClientRect();
+      this.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      this.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+    }, { passive: true });
+  });
+</script>
+</body>
+</html>
