@@ -6,12 +6,9 @@
   <script>
     history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
-    window.addEventListener('load', function() {
-      if (window.location.hash) {
-        history.replaceState(null, '', window.location.pathname);
-      }
-      window.scrollTo(0, 0);
-    });
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname);
+    }
   </script>
   <title>UGC·AI — Prompts que Vendem no TikTok Shop Brasil</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1058,7 +1055,7 @@
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto" onerror="this.closest('.nbc-card').style.display='none'"></video>
+          <video class="nbc-video" data-src="${src}" muted loop playsinline preload="none" onerror="this.closest('.nbc-card').style.display='none'"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
@@ -1095,6 +1092,24 @@
   }
 
   function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
+
+  /* loadNearby: só carrega vídeos das cards visíveis + 2 de buffer */
+  function loadNearby(tx) {
+    if (!cardW) return;
+    const buffer = (cardW + GAP) * 2;
+    cardNodes.forEach((card, i) => {
+      const cardLeft = tx + i * (cardW + GAP);
+      const inRange  = cardLeft + cardW > -buffer && cardLeft < stageW + buffer;
+      const vid      = card.querySelector('video');
+      if (!vid) return;
+      if (inRange && !vid.src && vid.dataset.src) {
+        vid.src = vid.dataset.src;
+        vid.play().catch(() => {});
+      } else if (inRange && vid.src && vid.paused) {
+        vid.play().catch(() => {});
+      }
+    });
+  }
 
   /* apply3D: pure math — zero getBoundingClientRect calls per frame */
   function apply3D(tx) {
@@ -1148,6 +1163,7 @@
     const tx = -(autoOff - dragOff);
     track.style.transform = 'translateX(' + tx + 'px)';
     apply3D(tx);
+    loadNearby(tx);
     updateProgress();
     requestAnimationFrame(tick);
   }
