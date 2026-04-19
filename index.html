@@ -993,8 +993,8 @@
   const stage = document.getElementById('nbcStage');
   const track = document.getElementById('nbcTrack');
 
-  /* ── 1. Todos os 23 vídeos com tags ── */
-    const VIDEO_DATA = [
+  /* ── 1. Todos os vídeos com tags ── */
+  const VIDEO_DATA = [
     { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576454/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok__1_.mp4',  tag: 'TikTok Shop' },
     { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576469/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok.mp4',  tag: 'Viral' },
     { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576480/saas-tiktok/father_showing_soccer_202604091257.mp4',  tag: 'UGC' },
@@ -1037,7 +1037,6 @@
   function buildTrack() {
     track.innerHTML = '';
 
-    // Shuffle único e limpo (sem consecutivos repetidos nem fronteira circular repetida)
     let order = shuffle(VIDEO_DATA);
     for (let i = 1; i < order.length; i++) {
       if (order[i].src === order[i - 1].src) {
@@ -1046,7 +1045,6 @@
         }
       }
     }
-    // Garante que último ≠ primeiro (fronteira do loop)
     if (order[order.length - 1].src === order[0].src) {
       for (let j = 1; j < order.length - 1; j++) {
         if (order[j].src !== order[0].src && order[j].src !== order[order.length - 2].src) {
@@ -1055,13 +1053,12 @@
       }
     }
 
-    // Renderiza 2 cópias idênticas — quando autoOff chega em setW volta para 0 sem glitch
     for (let copy = 0; copy < 2; copy++) {
       order.forEach(({ src, tag }) => {
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" data-src="${src}" muted loop playsinline preload="none"></video>
+          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
@@ -1087,9 +1084,8 @@
   let lastTs    = null;
   let lastActive = null;
 
-  // ── Cached layout ──
-  let cardW     = 0;
-  let stageW    = 0;
+  let cardW   = 0;
+  let stageW  = 0;
   let cardNodes = [];
 
   function cacheLayout() {
@@ -1100,14 +1096,10 @@
 
   function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
 
-  let frameCount = 0;
-
-  /* apply3D: transforms + lazy video loading */
+  /* apply3D: pure math — zero getBoundingClientRect calls per frame */
   function apply3D(tx) {
     const halfStage = stageW * 0.55;
     const stageCenterRel = stageW / 2;
-    const loadRadius = stageW * 1.2; // pixels from center: carrega todos os visíveis + 1 extra
-    const doVideo = (frameCount % 2 === 0);
     cardNodes.forEach((card, i) => {
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
@@ -1116,24 +1108,6 @@
       card.style.transform = `rotateY(${t * MAX_ROT_Y}deg) scale(${1 - absT * MAX_SCALE_D}) translateY(${-MAX_TRANSY * (1 - absT)}px)`;
       card.style.opacity   = 1 - absT * MAX_OPACITY_D;
       card.style.zIndex    = Math.round((1 - absT) * 10);
-
-      if (doVideo) {
-        const video = card.querySelector('video');
-        if (video) {
-          const absDist = Math.abs(dist);
-          if (absDist < loadRadius) {
-            // Carrega src de todos os cards visíveis e deixa o browser autoplay
-            if (!video.src && video.dataset.src) {
-              video.autoplay = true;
-              video.src = video.dataset.src;
-              video.load();
-            } else if (video.src && video.paused) {
-              video.play().catch(() => {});
-            }
-          }
-        }
-      }
-
       if (absT < 0.5) {
         if (card !== lastActive) {
           if (lastActive) lastActive.classList.remove('nbc-active');
@@ -1144,7 +1118,7 @@
     });
   }
 
-  function updateProgress(tx) {
+  function updateProgress() {
     if (!thumb) return;
     const sw = setW();
     const pct = sw > 0 ? (autoOff % sw) / sw : 0;
@@ -1152,12 +1126,10 @@
   }
 
   function tick(ts) {
-    frameCount++;
     if (!initialized) {
       cacheLayout();
       const sw = setW();
       if (sw > 1 && cardW > 0) {
-        // Começa no meio do set 1 centralizado no stage
         autoOff = sw / 2 - stageW / 2;
         if (autoOff < 0) autoOff = 0;
         initialized = true;
@@ -1168,7 +1140,6 @@
       const dt = Math.min(ts - lastTs, 32);
       autoOff += SPEED * dt;
       const sw = setW();
-      // Wrap seamless: set 2 é idêntico ao set 1, então subtrair sw é invisível
       if (sw > 0 && autoOff >= sw) autoOff -= sw;
       if (sw > 0 && autoOff < 0) autoOff += sw;
     }
@@ -1182,7 +1153,6 @@
   }
   requestAnimationFrame(tick);
 
-  // Re-cache on resize
   window.addEventListener('resize', () => { cacheLayout(); initialized = false; }, { passive: true });
 
   function onDown(e) {
