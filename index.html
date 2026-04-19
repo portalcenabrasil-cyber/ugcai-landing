@@ -1064,11 +1064,13 @@
   let dragOff    = 0;
   let dragging   = false;
   let startX     = 0;
-  let lastTs     = null;
+  let lastTs     = 0;
   let lastActive = null;
-  let rafId      = null;   // controla o loop — null = pausado
+  let rafId      = null;
+  let active     = false;   // true quando seção está próxima/visível
+  let frameCount = 0;       // throttle de video.play() calls
 
-  // ── Cached layout (no DOM reads in hot path) ──
+  // ── Cached layout ──
   let cardW     = 0;
   let stageW    = 0;
   let cardNodes = [];
@@ -1081,7 +1083,6 @@
 
   function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
 
-  /* pauseAllVideos: chamado quando a seção sai de tela */
   function pauseAllVideos() {
     cardNodes.forEach(card => {
       const v = card.querySelector('video');
@@ -1089,10 +1090,11 @@
     });
   }
 
-  /* apply3D: pure math — zero getBoundingClientRect calls per frame */
+  /* apply3D — sem DOM reads no hot path */
   function apply3D(tx) {
     const halfStage      = stageW * 0.55;
     const stageCenterRel = stageW / 2;
+    const doVideo        = (frameCount % 4 === 0); // verifica vídeos 1 em cada 4 frames
     cardNodes.forEach((card, i) => {
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
@@ -1102,31 +1104,31 @@
       card.style.opacity   = 1 - absT * MAX_OPACITY_D;
       card.style.zIndex    = Math.round((1 - absT) * 10);
 
-      const video = card.querySelector('video');
-      if (video) {
-        // Apenas os 3 cards centrais carregam e tocam (absT < 0.35)
-        if (absT < 0.35) {
-          if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
-          if (video.paused && video.readyState >= 2) {
-            video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
-          }
-          if (!video.paused) card.classList.add('nbc-loaded');
-        } else {
-          if (!video.paused) video.pause();
-          // Libera vídeos distantes da memória
-          if (absT > 0.7 && video.src) {
-            video.pause(); video.removeAttribute('src'); video.load();
-            card.classList.remove('nbc-loaded');
+      if (doVideo) {
+        const video = card.querySelector('video');
+        if (video) {
+          if (absT < 0.55) {
+            // Pre-carrega e toca os ~5 cards centrais
+            if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
+            if (video.paused && video.readyState >= 2) {
+              video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
+            }
+            if (!video.paused) card.classList.add('nbc-loaded');
+          } else {
+            if (!video.paused) video.pause();
+            // Libera memória apenas muito distante (evita reloads frequentes)
+            if (absT > 0.9 && video.src) {
+              video.pause(); video.removeAttribute('src'); video.load();
+              card.classList.remove('nbc-loaded');
+            }
           }
         }
       }
 
-      if (absT < 0.5) {
-        if (card !== lastActive) {
-          if (lastActive) lastActive.classList.remove('nbc-active');
-          card.classList.add('nbc-active');
-          lastActive = card;
-        }
+      if (absT < 0.5 && card !== lastActive) {
+        if (lastActive) lastActive.classList.remove('nbc-active');
+        card.classList.add('nbc-active');
+        lastActive = card;
       }
     });
   }
@@ -1139,6 +1141,8 @@
   }
 
   function tick(ts) {
+    frameCount++;
+
     if (!initialized) {
       cacheLayout();
       const sw = setW();
@@ -1146,10 +1150,11 @@
         autoOff = sw / 2 - stageW / 2;
         if (autoOff < 0) autoOff = 0;
         initialized = true;
+        lastTs = ts;
       }
     }
 
-    if (lastTs !== null && !dragging) {
+    if (active && !dragging && lastTs > 0) {
       const dt = Math.min(ts - lastTs, 32);
       autoOff += SPEED * dt;
       const sw = setW();
@@ -1161,26 +1166,29 @@
     const tx = -(autoOff - dragOff);
     track.style.transform = 'translateX(' + tx + 'px)';
     apply3D(tx);
-    updateProgress();
-    rafId = requestAnimationFrame(tick);  // guarda o ID
+    if (frameCount % 2 === 0) updateProgress(); // progress bar a 30fps
+
+    rafId = requestAnimationFrame(tick);
   }
 
-  /* ── IntersectionObserver: para o loop quando fora da tela ── */
+  /* ── IntersectionObserver com rootMargin generoso ──
+     Pré-aquece o loop 300px antes de entrar no viewport.
+     Para completamente apenas quando a seção está >300px fora de tela. */
   const nbcSection = stage.closest('section') || stage.parentElement;
+  track.style.willChange = 'transform'; // permanente — evita recriação de layer
+
   const visObs = new IntersectionObserver(entries => {
-    const visible = entries[0].isIntersecting;
-    if (visible) {
-      if (!rafId) { lastTs = null; rafId = requestAnimationFrame(tick); }
-      track.style.willChange = 'transform';
+    const near = entries[0].isIntersecting;
+    active = near;
+    if (near) {
+      if (!rafId) { lastTs = performance.now(); rafId = requestAnimationFrame(tick); }
     } else {
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       pauseAllVideos();
-      track.style.willChange = 'auto';
     }
-  }, { threshold: 0.01 });
+  }, { rootMargin: '300px 0px', threshold: 0 });
   visObs.observe(nbcSection);
 
-  // Re-cache on resize
   window.addEventListener('resize', () => { cacheLayout(); initialized = false; }, { passive: true });
 
   function onDown(e) {
@@ -1198,7 +1206,7 @@
     const sw = setW();
     if (sw > 0) autoOff = ((autoOff % sw) + sw) % sw;
     dragOff = 0;
-    lastTs = null;
+    lastTs  = performance.now(); // retoma sem salto
   }
 
   stage.addEventListener('mousedown',  onDown, { passive: true });
