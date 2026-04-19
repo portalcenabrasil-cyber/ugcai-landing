@@ -813,7 +813,7 @@
 
 <style>
 .nbc-section {
-  padding: 0 0 clamp(16px,3vh,40px);
+  padding: clamp(24px,3vh,48px) 0 clamp(32px,5vh,64px);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -852,11 +852,11 @@
 .nbc-track {
   display: flex;
   gap: 20px;
-  padding: 22px 0 26px;
+  padding: 56px 0 60px;
   width: max-content;
+  will-change: transform;
+  transform-style: preserve-3d;
   margin: 0;
-  opacity: 0;
-  transition: opacity 0.35s ease;
 }
 .nbc-card {
   --w: clamp(180px, 17vw, 260px);
@@ -871,9 +871,18 @@
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
   pointer-events: none;
   transform-origin: center center;
+  will-change: transform, opacity;
   backface-visibility: hidden;
 }
-.nbc-card::before { content: none; }
+.nbc-card::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+}
+.nbc-card:nth-child(6n+1)::before { background: linear-gradient(150deg,#2a0040,#6600aa); }
+.nbc-card:nth-child(6n+2)::before { background: linear-gradient(150deg,#001830,#004d99); }
+.nbc-card:nth-child(6n+3)::before { background: linear-gradient(150deg,#1a1000,#554400); }
+.nbc-card:nth-child(6n+4)::before { background: linear-gradient(150deg,#001a0d,#006633); }
+.nbc-card:nth-child(6n+5)::before { background: linear-gradient(150deg,#1a0008,#660022); }
+.nbc-card:nth-child(6n+6)::before { background: linear-gradient(150deg,#0a0a0a,#303030); }
 .nbc-card.nbc-active {
   border-color: var(--orange) !important;
   box-shadow:
@@ -887,10 +896,6 @@
   object-fit: cover;
   display: block;
   position: relative; z-index: 1;
-  pointer-events: none;
-}
-.nbc-card:not(.nbc-loaded) {
-  opacity: 0 !important;
   pointer-events: none;
 }
 .nbc-card-body {
@@ -1043,7 +1048,7 @@
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" data-src="${src}" muted loop playsinline preload="none"></video>
+          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
@@ -1061,16 +1066,13 @@
   const MAX_TRANSY     = 18;
   const MAX_OPACITY_D  = 0.35;
 
-  let autoOff    = 0;
+  let autoOff   = 0;
   let initialized = false;
-  let dragOff    = 0;
-  let dragging   = false;
-  let startX     = 0;
-  let lastTs     = 0;
+  let dragOff   = 0;
+  let dragging  = false;
+  let startX    = 0;
+  let lastTs    = null;
   let lastActive = null;
-  let rafId      = null;
-  let active     = false;   // true quando seção está próxima/visível
-  let frameCount = 0;
 
   // ── Cached layout ──
   let cardW     = 0;
@@ -1085,19 +1087,12 @@
 
   function setW() { return (cardW + GAP) * VIDEOS_PER_SET; }
 
-  function pauseAllVideos() {
-    cardNodes.forEach(card => {
-      const v = card.querySelector('video');
-      if (v && !v.paused) v.pause();
-    });
-  }
-
-  /* apply3D — sem DOM reads no hot path */
+  /* apply3D: pure math — zero getBoundingClientRect calls per frame */
   function apply3D(tx) {
-    const halfStage      = stageW * 0.55;
-    const stageCenterRel = stageW / 2;
-    const doVideo        = (frameCount % 2 === 0); // verifica vídeos a cada 2 frames
+    const halfStage = stageW * 0.55;
+    const stageCenterRel = stageW / 2; // center relative to stage left
     cardNodes.forEach((card, i) => {
+      // card center relative to stage left = tx + i*(cardW+GAP) + cardW/2
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
       const t      = Math.max(-1, Math.min(1, dist / halfStage));
@@ -1105,97 +1100,54 @@
       card.style.transform = `rotateY(${t * MAX_ROT_Y}deg) scale(${1 - absT * MAX_SCALE_D}) translateY(${-MAX_TRANSY * (1 - absT)}px)`;
       card.style.opacity   = 1 - absT * MAX_OPACITY_D;
       card.style.zIndex    = Math.round((1 - absT) * 10);
-
-      if (doVideo) {
-        const video = card.querySelector('video');
-        if (video) {
-          if (absT < 0.72) {
-            // Pré-carrega os ~7 cards mais próximos do centro
-            if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
-            if (absT < 0.42) {
-              // Toca apenas os ~3 cards centrais
-              if (video.paused && video.readyState >= 2) {
-                video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
-              }
-              if (!video.paused) card.classList.add('nbc-loaded');
-            } else {
-              if (!video.paused) video.pause();
-            }
-          } else {
-            if (!video.paused) video.pause();
-            if (absT > 0.92 && video.src) {
-              video.pause(); video.removeAttribute('src'); video.load();
-              card.classList.remove('nbc-loaded');
-            }
-          }
+      if (absT < 0.5) {
+        if (card !== lastActive) {
+          if (lastActive) lastActive.classList.remove('nbc-active');
+          card.classList.add('nbc-active');
+          lastActive = card;
         }
-      }
-
-      if (absT < 0.5 && card !== lastActive) {
-        if (lastActive) lastActive.classList.remove('nbc-active');
-        card.classList.add('nbc-active');
-        lastActive = card;
       }
     });
   }
 
-  function updateProgress() {
+  function updateProgress(tx) {
     if (!thumb) return;
-    const sw  = setW();
+    const sw = setW();
     const pct = sw > 0 ? (autoOff % sw) / sw : 0;
     thumb.style.left = (pct * 62) + '%';
   }
 
   function tick(ts) {
-    frameCount++;
-
     if (!initialized) {
       cacheLayout();
       const sw = setW();
       if (sw > 1 && cardW > 0) {
-        autoOff = 0;          // começa do início — sem salto, sem glitch
+        // Começa no meio do set 1 centralizado no stage
+        autoOff = sw / 2 - stageW / 2;
+        if (autoOff < 0) autoOff = 0;
         initialized = true;
-        lastTs = ts;
-        track.style.opacity = '1';  // revela o track só após posição definida
       }
-      return;                 // não renderiza frames antes de estar pronto
     }
 
-    if (active && !dragging && lastTs > 0) {
+    if (lastTs !== null && !dragging) {
       const dt = Math.min(ts - lastTs, 32);
       autoOff += SPEED * dt;
       const sw = setW();
+      // Wrap seamless: set 2 é idêntico ao set 1, então subtrair sw é invisível
       if (sw > 0 && autoOff >= sw) autoOff -= sw;
-      if (sw > 0 && autoOff < 0)  autoOff += sw;
+      if (sw > 0 && autoOff < 0) autoOff += sw;
     }
     lastTs = ts;
 
     const tx = -(autoOff - dragOff);
     track.style.transform = 'translateX(' + tx + 'px)';
     apply3D(tx);
-    if (frameCount % 3 === 0) updateProgress();
-
-    rafId = requestAnimationFrame(tick);
+    updateProgress();
+    requestAnimationFrame(tick);
   }
+  requestAnimationFrame(tick);
 
-  /* ── IntersectionObserver com rootMargin generoso ──
-     Pré-aquece o loop 300px antes de entrar no viewport.
-     Para completamente apenas quando a seção está >300px fora de tela. */
-  const nbcSection = stage.closest('section') || stage.parentElement;
-  track.style.willChange = 'transform'; // permanente — evita recriação de layer
-
-  const visObs = new IntersectionObserver(entries => {
-    const near = entries[0].isIntersecting;
-    active = near;
-    if (near) {
-      if (!rafId) { lastTs = performance.now(); rafId = requestAnimationFrame(tick); }
-    } else {
-      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      pauseAllVideos();
-    }
-  }, { rootMargin: '300px 0px', threshold: 0 });
-  visObs.observe(nbcSection);
-
+  // Re-cache on resize
   window.addEventListener('resize', () => { cacheLayout(); initialized = false; }, { passive: true });
 
   function onDown(e) {
@@ -1213,7 +1165,7 @@
     const sw = setW();
     if (sw > 0) autoOff = ((autoOff % sw) + sw) % sw;
     dragOff = 0;
-    lastTs  = performance.now(); // retoma sem salto
+    lastTs = null;
   }
 
   stage.addEventListener('mousedown',  onDown, { passive: true });
