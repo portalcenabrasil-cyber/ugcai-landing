@@ -1097,7 +1097,8 @@
   function apply3D(tx) {
     const halfStage = stageW * 0.55;
     const stageCenterRel = stageW / 2;
-    const doVideo = (frameCount % 3 === 0);
+    const loadRadius = stageW * 1.2; // pixels from center: carrega todos os visíveis + 1 extra
+    const doVideo = (frameCount % 2 === 0);
     cardNodes.forEach((card, i) => {
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
@@ -1110,10 +1111,11 @@
       if (doVideo) {
         const video = card.querySelector('video');
         if (video) {
-          if (absT < 0.75) {
-            // Pré-carrega os cards visíveis
+          const absDist = Math.abs(dist);
+          if (absDist < loadRadius) {
+            // Carrega src de todos os cards visíveis (usa distância real, não t clampeado)
             if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
-            if (absT < 0.45 && video.paused && video.readyState >= 2) {
+            if (video.src && video.paused && video.readyState >= 2) {
               video.play().catch(() => {});
             }
           }
