@@ -1058,7 +1058,7 @@
         const card = document.createElement('div');
         card.className = 'nbc-card';
         card.innerHTML = `
-          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto"></video>
+          <video class="nbc-video" src="${src}" autoplay muted loop playsinline preload="auto" onerror="this.closest('.nbc-card').style.display='none'"></video>
           <div class="nbc-card-body"><div class="nbc-card-tag">${tag}</div></div>`;
         track.appendChild(card);
       });
