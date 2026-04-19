@@ -813,7 +813,7 @@
 
 <style>
 .nbc-section {
-  padding: clamp(24px,3vh,48px) 0 clamp(32px,5vh,64px);
+  padding: 0 0 clamp(16px,3vh,40px);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -852,7 +852,7 @@
 .nbc-track {
   display: flex;
   gap: 20px;
-  padding: 56px 0 60px;
+  padding: 22px 0 26px;
   width: max-content;
   margin: 0;
 }
@@ -1068,7 +1068,7 @@
   let lastActive = null;
   let rafId      = null;
   let active     = false;   // true quando seção está próxima/visível
-  let frameCount = 0;       // throttle de video.play() calls
+  let frameCount = 0;
 
   // ── Cached layout ──
   let cardW     = 0;
@@ -1094,7 +1094,7 @@
   function apply3D(tx) {
     const halfStage      = stageW * 0.55;
     const stageCenterRel = stageW / 2;
-    const doVideo        = (frameCount % 4 === 0); // verifica vídeos 1 em cada 4 frames
+    const doVideo        = (frameCount % 2 === 0); // verifica vídeos a cada 2 frames
     cardNodes.forEach((card, i) => {
       const cardCx = tx + i * (cardW + GAP) + cardW / 2;
       const dist   = cardCx - stageCenterRel;
@@ -1107,17 +1107,21 @@
       if (doVideo) {
         const video = card.querySelector('video');
         if (video) {
-          if (absT < 0.55) {
-            // Pre-carrega e toca os ~5 cards centrais
+          if (absT < 0.72) {
+            // Pré-carrega os ~7 cards mais próximos do centro
             if (!video.src && video.dataset.src) { video.src = video.dataset.src; video.load(); }
-            if (video.paused && video.readyState >= 2) {
-              video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
+            if (absT < 0.42) {
+              // Toca apenas os ~3 cards centrais
+              if (video.paused && video.readyState >= 2) {
+                video.play().then(() => card.classList.add('nbc-loaded')).catch(() => {});
+              }
+              if (!video.paused) card.classList.add('nbc-loaded');
+            } else {
+              if (!video.paused) video.pause();
             }
-            if (!video.paused) card.classList.add('nbc-loaded');
           } else {
             if (!video.paused) video.pause();
-            // Libera memória apenas muito distante (evita reloads frequentes)
-            if (absT > 0.9 && video.src) {
+            if (absT > 0.92 && video.src) {
               video.pause(); video.removeAttribute('src'); video.load();
               card.classList.remove('nbc-loaded');
             }
@@ -1166,7 +1170,7 @@
     const tx = -(autoOff - dragOff);
     track.style.transform = 'translateX(' + tx + 'px)';
     apply3D(tx);
-    if (frameCount % 2 === 0) updateProgress(); // progress bar a 30fps
+    if (frameCount % 3 === 0) updateProgress();
 
     rafId = requestAnimationFrame(tick);
   }
