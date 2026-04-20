@@ -134,10 +134,10 @@
       object-fit: cover; object-position: center 80%; z-index: 0;
       pointer-events: none;
     }
-    @media (max-width: 768px) {
-      .hero-video { display: none; }
-      .hero { background: url('/hero-poster.jpg') center 80% / cover no-repeat; }
-    }
+    .hero-video::-webkit-media-controls { display: none !important; }
+    .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
+    .hero-video::-webkit-media-controls-panel { display: none !important; }
+    .hero-video::-webkit-media-controls-play-button { display: none !important; }
     .hero-overlay {
       position: absolute; inset: 0;
       background: rgba(0,0,0,0.47); z-index: 1;
