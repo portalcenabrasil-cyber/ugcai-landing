@@ -101,14 +101,23 @@
     }
     .nav-tab:hover { color: white; background: rgba(255,255,255,0.08); }
 
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin-left: auto; }
     .btn-header-cta {
-      margin-left: auto; flex-shrink: 0;
+      flex-shrink: 0;
       background: white; border: none; border-radius: 100px;
       color: #06091a; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
       font-size: 13px; font-weight: 700; padding: 9px 22px;
       cursor: pointer; transition: all 0.25s; text-decoration: none;
     }
     .btn-header-cta:hover { background: var(--orange); transform: translateY(-1px); }
+    .btn-header-login {
+      flex-shrink: 0;
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 100px;
+      color: white; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+      font-size: 13px; font-weight: 700; padding: 9px 22px;
+      cursor: pointer; transition: all 0.25s; text-decoration: none; white-space: nowrap;
+    }
+    .btn-header-login:hover { border-color: white; background: rgba(255,255,255,0.08); transform: translateY(-1px); }
 
     /* ─── HERO ─── */
     .hero {
@@ -736,6 +745,8 @@
       .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
       .stat-cell:last-child { border-bottom: none; }
       .header-nav { display: none; }
+      .btn-header-login { padding: 8px 14px; font-size: 12px; }
+      .btn-header-cta { padding: 8px 14px; font-size: 12px; }
     }
 
     /* ─── GLOBAL SYMMETRY & CONSISTENCY ─── */
@@ -800,7 +811,10 @@
     <a class="nav-tab" href="#pricing">Preços</a>
     <a class="nav-tab" href="#como-funciona">Como funciona</a>
   </nav>
-  <a href="#pricing" class="btn-header-cta" style="flex-shrink:0;">Começar agora →</a>
+  <div class="header-actions">
+    <a href="https://ugc-prompt-generator-six.vercel.app/login" class="btn-header-login">Login</a>
+    <a href="#pricing" class="btn-header-cta">Começar agora →</a>
+  </div>
 </header>
 
 <!-- HERO -->
