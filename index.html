@@ -132,6 +132,7 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 80%; z-index: 0;
+      pointer-events: none;
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -819,7 +820,7 @@
 
 <!-- HERO -->
 <section class="hero" style="padding-bottom:clamp(20px,4vh,48px);">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
     <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
