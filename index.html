@@ -482,7 +482,8 @@
     .proof-handle { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); }
 
     /* ─── PRICING — dark section + card redesign ─── */
-    #pricing { background: #08091a !important; position: relative; overflow: hidden; }
+    #pricing { background: #08091a !important; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+    #pricing > * { width: 100%; max-width: 1100px; }
     #pricing::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
       height: 180px;
@@ -492,7 +493,7 @@
     .pricing-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
       gap: 24px; max-width: 1020px; margin: 0 auto;
-      align-items: stretch; position: relative; z-index: 1;
+      align-items: stretch; position: relative; z-index: 1; width: 100%;
     }
     .price-card {
       background: #13172e;
@@ -2094,8 +2095,8 @@ function switchTab(tab) {
 
 <!-- PRICING -->
 <section class="content-section" id="pricing" style="background:#08091a;">
-  <div class="section-header reveal">
-    <h2 class="section-title" style="font-size:clamp(48px,7.65vw,95px);letter-spacing:-3px;color:white;">Escolha seu plano<br><em style="font-style:normal;background:var(--iridescent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">e comece hoje</em></h2>
+  <div class="section-header reveal" style="text-align:center;width:100%;">
+    <h2 class="section-title" style="font-size:clamp(48px,7.65vw,95px);letter-spacing:-3px;color:white;text-align:center;width:100%;">Escolha seu plano<br><em style="font-style:normal;background:var(--iridescent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">e comece hoje</em></h2>
   </div>
 
   <div class="pricing-grid">
