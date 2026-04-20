@@ -133,7 +133,9 @@
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 80%; z-index: 0;
       pointer-events: none;
+      opacity: 0; transition: opacity 0.6s ease;
     }
+    .hero-video.playing { opacity: 1; }
     .hero-video::-webkit-media-controls { display: none !important; }
     .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
     .hero-video::-webkit-media-controls-panel { display: none !important; }
@@ -823,7 +825,7 @@
 </header>
 
 <!-- HERO -->
-<section class="hero" style="padding-bottom:clamp(20px,4vh,48px);">
+<section class="hero" style="padding-bottom:clamp(20px,4vh,48px);background:url('/hero-poster.jpg') center 80%/cover no-repeat;">
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture poster="/hero-poster.jpg" x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
     <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/q_auto:low,vc_h264/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
   </video>
@@ -831,6 +833,7 @@
     (function() {
       var v = document.getElementById('heroVideo');
       if (!v) return;
+      v.addEventListener('playing', function() { v.classList.add('playing'); }, { once: true });
       var p = v.play();
       if (p !== undefined) {
         p.catch(function() {
