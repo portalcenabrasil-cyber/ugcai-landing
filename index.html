@@ -820,9 +820,22 @@
 
 <!-- HERO -->
 <section class="hero" style="padding-bottom:clamp(20px,4vh,48px);">
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
-    <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture poster="/hero-poster.jpg" x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
+    <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/q_auto:low,vc_h264/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
   </video>
+  <script>
+    (function() {
+      var v = document.getElementById('heroVideo');
+      if (!v) return;
+      var p = v.play();
+      if (p !== undefined) {
+        p.catch(function() {
+          document.addEventListener('touchstart', function() { v.play(); }, { once: true });
+          document.addEventListener('click', function() { v.play(); }, { once: true });
+        });
+      }
+    })();
+  </script>
   <div class="hero-overlay"></div>
 
 <h1 class="hero-title fade-in-2">
