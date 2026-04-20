@@ -505,6 +505,8 @@
       box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     }
     .price-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .price-card.starter:hover { transform: translateY(-8px); box-shadow: 0 24px 80px rgba(0,196,204,0.45); }
+    .price-card.pro:hover { transform: translateY(-8px); box-shadow: 0 24px 80px rgba(138,80,255,0.45); }
 
     /* top badge bar — full width */
     .price-badge {
@@ -579,20 +581,39 @@
       text-transform: uppercase; margin-bottom: 12px; font-weight: 600;
       color: rgba(255,255,255,0.45);
     }
+    .price-card.starter .price-plan {
+      color: #00c4cc;
+      text-shadow: 0 0 10px rgba(0,196,204,0.7);
+    }
+    .price-card.pro .price-plan {
+      color: #8a50ff;
+      text-shadow: 0 0 10px rgba(138,80,255,0.7);
+    }
+    .price-card.agencia .price-plan {
+      background: linear-gradient(135deg,#ff6600,#cc44ff,#0099ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 6px rgba(180,60,255,0.6));
+    }
     .price-original {
-      font-family: 'DM Sans', sans-serif; font-size: 12px;
-      text-decoration: line-through; margin-bottom: 2px;
-      color: rgba(255,255,255,0.3);
+      font-family: 'DM Sans', sans-serif; font-size: 15px;
+      text-decoration: line-through; text-decoration-color: #ff3333;
+      margin-bottom: 2px; color: white;
     }
     .price-value {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-size: clamp(42px,5vw,62px); font-weight: 800;
-      letter-spacing: -2px; line-height: 1; margin-bottom: 6px; color: white;
+      letter-spacing: -2px; line-height: 1; margin-bottom: 6px; color: #FFD700;
     }
     .price-value sup { font-size: 22px; vertical-align: top; margin-top: 12px; font-weight: 700; }
     .price-period {
       font-family: 'DM Sans', sans-serif; font-size: 11px;
-      color: rgba(255,255,255,0.35); margin-bottom: 24px;
+      color: #ff6600; margin-bottom: 24px;
+    }
+    .price-desc {
+      font-family: 'DM Sans', sans-serif; font-size: 12px;
+      color: white; margin-bottom: 16px; line-height: 1.5;
+      font-style: italic; text-align: center; min-height: 36px;
     }
     .price-list {
       list-style: none; display: flex; flex-direction: column;
@@ -600,7 +621,7 @@
     }
     .price-list li {
       display: flex; align-items: flex-start; gap: 9px;
-      font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5;
+      font-size: 13px; color: white; line-height: 1.5;
     }
     .price-list li::before { content: '✓'; font-weight: 800; flex-shrink: 0; }
     .price-list li.off { color: rgba(255,255,255,0.25); }
@@ -1654,7 +1675,6 @@ function switchTab(tab) {
               <div class="vc-label">Tipo de vídeo</div>
               <div class="vc-chips">
                 <div class="vc-chip active">🏠 Caseiro</div>
-                <div class="vc-chip">🏭 Fábrica</div>
                 <div class="vc-chip">👁 POV</div>
               </div>
             </div>
@@ -1710,7 +1730,7 @@ function switchTab(tab) {
       <div class="step-card-content">
         <div class="step-number">3</div>
         <div class="step-card-title">Copie e mande gravar</div>
-        <div class="step-card-desc">Prompt detalhado + legenda pronta chegam em ~3 segundos. Um clique para copiar e mandar pro criador gravar na hora.</div>
+        <div class="step-card-desc">PROMPT PRONTO + LEGENDA em menos de 3 segundos. Um clique para copiar e mandar para a sua IA de vídeo. Você pode trocar as falas do personagem como quiser.</div>
       </div>
     </div>
   </div>
@@ -2082,38 +2102,41 @@ function switchTab(tab) {
 
     <!-- STARTER -->
     <div class="price-card starter reveal">
-      <div class="price-badge badge-promo">🔥 PROMOÇÃO LIMITADA</div>
+      <div class="price-badge badge-promo">⚡ STARTER</div>
       <div class="price-plan">Starter</div>
+      <div class="price-desc">Para quem está começando a vender com UGC</div>
       <div class="price-original">R$ 99,90</div>
       <div class="price-value"><sup>R$</sup>69<span style="font-size:28px;">,90</span></div>
       <div class="price-period">por mês · créditos renovam todo mês</div>
       <ul class="price-list">
         <li>200 gerações por mês</li>
-        <li>Modo individual</li>
+        <li>Postando 4 vídeos por dia na sua conta, você garante 50 dias de vídeos</li>
         <li>Prompt vídeo + legenda</li>
-        <li>Galeria (últimos 10 prompts)</li>
-        <li class="off">Modo lote (até 20 produtos)</li>
-        <li class="off">Suporte prioritário</li>
-        <li class="off">Estilos exclusivos</li>
+        <li>Galeria completa de prompts</li>
+        <li>Modo lote (até 20 produtos)</li>
+        <li>Suporte via WhatsApp 24h</li>
+        <li class="off">Call privada com a equipe</li>
       </ul>
       <a href="https://pay.kiwify.com.br/dfVMLGx" class="btn-price-plan">Começar com Starter →</a>
     </div>
 
     <!-- PRO -->
     <div class="price-card pro reveal">
-      <div class="price-badge badge-promo">⚡ MAIS VENDIDO</div>
+      <div class="price-badge badge-promo">🔥 MAIS VENDIDO</div>
       <div class="price-plan">Pro</div>
+      <div class="price-desc">Para criadores e lojistas que escalam conteúdo todo dia</div>
       <div class="price-original">R$ 197,00</div>
       <div class="price-value"><sup>R$</sup>127<span style="font-size:28px;">,90</span></div>
       <div class="price-period">por mês · créditos renovam todo mês</div>
       <ul class="price-list">
         <li>500 gerações por mês</li>
-        <li>Modo individual</li>
+        <li style="color:#86efac;">+ 100 gerações bônus 🎁</li>
+        <li>Postando 4 vídeos por dia na sua conta, você garante 150 dias de conteúdo com um click</li>
         <li>Prompt vídeo + legenda</li>
         <li>Galeria completa de prompts</li>
         <li>Modo lote (até 20 produtos)</li>
-        <li>Suporte prioritário</li>
-        <li class="off">Estilos exclusivos Agência</li>
+        <li>Suporte via WhatsApp 24h</li>
+        <li style="color:#86efac;font-weight:700;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
       </ul>
       <a href="https://pay.kiwify.com.br/GKp96ec" class="btn-price-plan">Quero o Pro →</a>
     </div>
@@ -2122,18 +2145,19 @@ function switchTab(tab) {
     <div class="price-card agencia reveal">
       <div class="price-badge badge-premium">👑 PREMIUM</div>
       <div class="price-plan">Agência</div>
-      <div class="price-original" style="color:rgba(255,255,255,0.3);">R$ 397,00</div>
+      <div class="price-desc">Para pessoas que realmente querem ter resultados com o TIKTOK SHOP</div>
+      <div class="price-original">R$ 397,00</div>
       <div class="price-value"><sup>R$</sup>247<span style="font-size:30px;">,90</span></div>
       <div class="price-period">por mês · créditos renovam todo mês</div>
       <ul class="price-list">
         <li>1.200 gerações por mês</li>
         <li style="color:#e9b8ff;">+ 300 gerações bônus 🎁</li>
-        <li>Modo individual</li>
+        <li>Postando 4 vídeos por dia na sua conta, você garante 365 dias de conteúdo com um click</li>
         <li>Prompt vídeo + legenda</li>
         <li>Galeria completa de prompts</li>
         <li>Modo lote (até 20 produtos)</li>
-        <li>Suporte prioritário + onboarding</li>
-        <li style="color:#e9b8ff;font-weight:700;">Todos os estilos exclusivos</li>
+        <li>Suporte via WhatsApp 24h</li>
+        <li style="color:#e9b8ff;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
       </ul>
       <a href="https://pay.kiwify.com.br/NUqDuNo" class="btn-price-plan">✦ Quero o Agência →</a>
     </div>
@@ -2233,7 +2257,7 @@ function switchTab(tab) {
   <div class="faq-wrap reveal">
     <div class="faq-item">
       <button class="faq-btn" onclick="faq(this)">O que é um "prompt de vídeo UGC"? <span class="faq-icon">+</span></button>
-      <div class="faq-ans">É um prompt que tem o poder de gerar seu vídeo do produto com influenciador ao TIKTOK SHOP. A IA que recomendamos usar para nossos prompts é o "VEO" no Flow. Você pode gerar até 3 vídeos diariamente em sua conta gmail.</div>
+      <div class="faq-ans">É um modelo de texto que tem o poder de gerar vídeos influenciador feito por IA apresentando seu produto ao TIKTOK SHOP. A IA que recomendamos usar para nossos prompts é o "VEO" no Flow. Você pode gerar até 3 vídeos diariamente em sua conta gmail.</div>
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="faq(this)">Precisa saber escrever prompts para usar? <span class="faq-icon">+</span></button>
@@ -2253,7 +2277,7 @@ function switchTab(tab) {
     </div>
     <div class="faq-item">
       <button class="faq-btn" onclick="faq(this)">O que conta como uma "geração"? <span class="faq-icon">+</span></button>
-      <div class="faq-ans">Cada vez que você clica em "Gerar Prompts" para um produto conta como uma geração. Starter inclui 100, Pro inclui 500, Agência tem gerações ilimitadas.</div>
+      <div class="faq-ans">Cada vez que você clica em "Gerar Prompts" para um produto conta como uma geração.</div>
     </div>
   </div>
 </section>
