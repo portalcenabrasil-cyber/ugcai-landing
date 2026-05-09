@@ -542,6 +542,9 @@
     .price-card .price-value,
     .price-card .price-period,
     .price-card .price-list,
+    .price-card .price-equiv,
+    .price-card .price-installment,
+    .price-card .annual-save-badge,
     .price-card .btn-price-plan { padding-left: 26px; padding-right: 26px; }
 
     /* STARTER */
@@ -625,11 +628,13 @@
     .price-value sup { font-size: 22px; vertical-align: top; margin-top: 12px; font-weight: 700; }
     .price-period {
       font-family: 'DM Sans', sans-serif; font-size: 11px;
-      color: #ff6600; margin-bottom: 6px;
+      color: #ff6600; margin-bottom: 6px; text-align: left;
     }
     .price-installment {
-      font-family: 'DM Sans', sans-serif; font-size: 11px;
-      color: rgba(255,255,255,0.4); margin-bottom: 18px;
+      font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
+      color: #ff6600; margin-top: 10px; margin-bottom: 20px; text-align: left;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px; padding: 4px 12px; display: inline-block;
     }
     .price-desc {
       font-family: 'DM Sans', sans-serif; font-size: 12px;
@@ -831,7 +836,7 @@
 <!-- HERO -->
 <section class="hero" style="padding-bottom:clamp(20px,4vh,48px);background:url('/hero-poster.jpg') center 80%/cover no-repeat;">
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture poster="/hero-poster.jpg" x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false">
-    <source src="https://res.cloudinary.com/dsxssbwfa/video/upload/q_auto:low,vc_h264/v1776576447/saas-tiktok/hero-bg.mp4" type="video/mp4">
+    <source src="https://saas-tiktok.b-cdn.net/hero-bg.mp4" type="video/mp4">
   </video>
   <script>
     (function() {
@@ -1053,32 +1058,32 @@
 
   /* ── 1. Todos os vídeos com tags ── */
   const VIDEO_DATA = [
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576454/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok__1_.mp4',  tag: 'TikTok Shop' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576469/saas-tiktok/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok.mp4',  tag: 'Viral' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576480/saas-tiktok/father_showing_soccer_202604091257.mp4',  tag: 'UGC' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576491/saas-tiktok/flow_-_mar_22_-_2159.mp4',  tag: 'Beleza' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576501/saas-tiktok/generated_video__14_.mp4',  tag: 'Moda' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576514/saas-tiktok/generated_video__39_.mp4',  tag: 'Fitness' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576570/saas-tiktok/generated_video__60_.mp4',  tag: 'Casa' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576588/saas-tiktok/grok-video-539a58af-3ec0-4b88-8991-6d789db5a5d5__2_.mp4',  tag: 'Produto' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576606/saas-tiktok/grok-video-9780d33f-dccf-4a69-85fc-027f1065f9ee.mp4',  tag: 'Tendencia' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576657/saas-tiktok/grok-video-9e39d0f9-9eb4-4d89-a577-9eaf2e8cd65e__1_.mp4',  tag: 'Lifestyle' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576718/saas-tiktok/grok-video-ca237485-5f20-45a0-ad94-a3ba96272344__1_.mp4',  tag: 'Estilo' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576760/saas-tiktok/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre__a_2-0.mp4',  tag: 'Skincare' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576820/saas-tiktok/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre_film-0__2_.mp4',  tag: 'Lifestyle' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576864/saas-tiktok/kling-3_0_a_realistic_vertical_street_interview_recorded_on_an_iphone_16__a_21-year-old_bl-0.mp4',  tag: 'Review' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576897/saas-tiktok/kling-3_0_scene_description_the_video_opens_with_a_close-up_of_a_hand_holding_the_ycz_perf-0.mp4',  tag: 'Perfumes' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576909/saas-tiktok/man_holding_artisanal_202604081836.mp4',  tag: 'Promocao' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576924/saas-tiktok/man_organizing_shoes_202604091236.mp4',  tag: 'TikTok Shop' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576933/saas-tiktok/man_showing_framed_202603260421.mp4',  tag: 'Viral' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576940/saas-tiktok/ssstik_io__luchivazquezz_1772249910270.mp4',  tag: 'UGC' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576986/saas-tiktok/veo-3_1-fast-generate-001_someone_filming_on_their_iphone_gets_closer_to_show_the_blanket_texture__vertica-0.mp4',  tag: 'Beleza' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776576996/saas-tiktok/woman_holding_serving_202603260403.mp4',  tag: 'Cozinha' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577004/saas-tiktok/woman_holding_water_202603260325.mp4',  tag: 'UGC' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577031/saas-tiktok/woman_showing_reversible_202603250537.mp4',  tag: 'Casa' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577041/saas-tiktok/woman_using_cleaning_202603301110.mp4',  tag: 'Produto' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577051/saas-tiktok/woman_with_balloon_202604091241.mp4',  tag: 'Tendencia' },
-    { src: 'https://res.cloudinary.com/dsxssbwfa/video/upload/v1776577068/saas-tiktok/woman_with_puppy_202603260329.mp4',  tag: 'Lifestyle' },
+    { src: 'https://saas-tiktok.b-cdn.net/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok__1_.mp4',  tag: 'TikTok Shop' },
+    { src: 'https://saas-tiktok.b-cdn.net/encontre_tiktok_shop_menina_no_tiktok_pesquisa_do_tiktok.mp4',  tag: 'Viral' },
+    { src: 'https://saas-tiktok.b-cdn.net/father_showing_soccer_202604091257.mp4',  tag: 'UGC' },
+    { src: 'https://saas-tiktok.b-cdn.net/flow_-_mar_22_-_2159.mp4',  tag: 'Beleza' },
+    { src: 'https://saas-tiktok.b-cdn.net/generated_video__14_.mp4',  tag: 'Moda' },
+    { src: 'https://saas-tiktok.b-cdn.net/generated_video__39_.mp4',  tag: 'Fitness' },
+    { src: 'https://saas-tiktok.b-cdn.net/generated_video__60_.mp4',  tag: 'Casa' },
+    { src: 'https://saas-tiktok.b-cdn.net/grok-video-539a58af-3ec0-4b88-8991-6d789db5a5d5__2_.mp4',  tag: 'Produto' },
+    { src: 'https://saas-tiktok.b-cdn.net/grok-video-9780d33f-dccf-4a69-85fc-027f1065f9ee.mp4',  tag: 'Tendencia' },
+    { src: 'https://saas-tiktok.b-cdn.net/grok-video-9e39d0f9-9eb4-4d89-a577-9eaf2e8cd65e__1_.mp4',  tag: 'Lifestyle' },
+    { src: 'https://saas-tiktok.b-cdn.net/grok-video-ca237485-5f20-45a0-ad94-a3ba96272344__1_.mp4',  tag: 'Estilo' },
+    { src: 'https://saas-tiktok.b-cdn.net/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre__a_2-0.mp4',  tag: 'Skincare' },
+    { src: 'https://saas-tiktok.b-cdn.net/kling-3_0_a_cinematic_realistic_gym_interview_scene_inside_a_modern_uk_fitness_centre_film-0__2_.mp4',  tag: 'Lifestyle' },
+    { src: 'https://saas-tiktok.b-cdn.net/kling-3_0_a_realistic_vertical_street_interview_recorded_on_an_iphone_16__a_21-year-old_bl-0.mp4',  tag: 'Review' },
+    { src: 'https://saas-tiktok.b-cdn.net/kling-3_0_scene_description_the_video_opens_with_a_close-up_of_a_hand_holding_the_ycz_perf-0.mp4',  tag: 'Perfumes' },
+    { src: 'https://saas-tiktok.b-cdn.net/man_holding_artisanal_202604081836.mp4',  tag: 'Promocao' },
+    { src: 'https://saas-tiktok.b-cdn.net/man_organizing_shoes_202604091236.mp4',  tag: 'TikTok Shop' },
+    { src: 'https://saas-tiktok.b-cdn.net/man_showing_framed_202603260421.mp4',  tag: 'Viral' },
+    { src: 'https://saas-tiktok.b-cdn.net/ssstik_io__luchivazquezz_1772249910270.mp4',  tag: 'UGC' },
+    { src: 'https://saas-tiktok.b-cdn.net/veo-3_1-fast-generate-001_someone_filming_on_their_iphone_gets_closer_to_show_the_blanket_texture__vertica-0.mp4',  tag: 'Beleza' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_holding_serving_202603260403.mp4',  tag: 'Cozinha' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_holding_water_202603260325.mp4',  tag: 'UGC' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_showing_reversible_202603250537.mp4',  tag: 'Casa' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_using_cleaning_202603301110.mp4',  tag: 'Produto' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_with_balloon_202604091241.mp4',  tag: 'Tendencia' },
+    { src: 'https://saas-tiktok.b-cdn.net/woman_with_puppy_202603260329.mp4',  tag: 'Lifestyle' },
   ];
 
   /* ── 2. Fisher-Yates shuffle ── */
@@ -2130,6 +2135,54 @@ function switchTab(tab) {
   .showcase-mockup { border-radius: 14px; }
   #view-lote { grid-template-columns: 1fr !important; }
 }
+
+/* ── PRICING TOGGLE ── */
+.pricing-toggle {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-bottom: 40px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px; padding: 4px; width: fit-content; margin-left: auto; margin-right: auto;
+}
+.toggle-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  padding: 9px 20px; border-radius: 50px; border: none; cursor: pointer;
+  background: transparent; color: rgba(255,255,255,0.5); transition: all 0.2s;
+  white-space: nowrap;
+}
+.toggle-btn.active {
+  background: white; color: #06091a;
+}
+.toggle-btn .save-tag {
+  display: inline-block; margin-left: 6px; font-size: 10px; font-weight: 700;
+  background: linear-gradient(135deg,#22c55e,#16a34a); color: white;
+  padding: 2px 7px; border-radius: 50px; vertical-align: middle;
+}
+.toggle-btn.active .save-tag { background: linear-gradient(135deg,#16a34a,#15803d); }
+/* monthly/annual visibility */
+.price-annual-block { display: none; }
+.pricing-grid.annual .price-monthly-block { display: none; }
+.pricing-grid.annual .price-annual-block { display: block; }
+/* annual-only / monthly-only items */
+.annual-only { display: none; }
+.pricing-grid.annual .annual-only { display: flex; }
+.pricing-grid.annual .monthly-only { display: none; }
+/* annual save badge */
+.annual-save-badge {
+  display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+  background: linear-gradient(135deg,#22c55e,#16a34a); color: white;
+  padding: 4px 12px; border-radius: 50px; margin-bottom: 8px;
+}
+.price-equiv {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: #ff6600; margin-bottom: 6px; text-align: left;
+}
+.price-annual-block { text-align: left; }
+.price-annual-block .price-value { text-align: left; }
+.price-days {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  color: rgba(255,255,255,0.4); margin-bottom: 18px; line-height: 1.5; font-style: italic;
+  text-align: center;
+}
 </style>
 
 <!-- PRICING -->
@@ -2138,27 +2191,44 @@ function switchTab(tab) {
     <h2 class="section-title" style="font-size:clamp(48px,7.65vw,95px);letter-spacing:-3px;color:white;text-align:center;width:100%;">Escolha seu plano<br><em style="font-style:normal;background:var(--iridescent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-right:0.08em;">e comece hoje</em></h2>
   </div>
 
-  <div class="pricing-grid">
+  <!-- TOGGLE -->
+  <div class="pricing-toggle">
+    <button class="toggle-btn active" id="toggleMonthly" onclick="setPricingMode('monthly')">Mensal</button>
+    <button class="toggle-btn" id="toggleAnual" onclick="setPricingMode('annual')">Anual <span class="save-tag">economize até 60%</span></button>
+  </div>
+
+  <div class="pricing-grid" id="pricingGrid">
 
     <!-- STARTER -->
     <div class="price-card starter reveal">
       <div class="price-badge badge-promo">⚡ STARTER</div>
       <div class="price-plan">Starter</div>
       <div class="price-desc">Para quem está começando a vender com UGC</div>
-      <div class="price-original">R$ 99,90</div>
-      <div class="price-value"><sup>R$</sup>69<span style="font-size:28px;">,90</span></div>
-      <div class="price-period">por mês · créditos renovam todo mês</div>
-      <div class="price-installment">ou 12x de R$ 6,57 no cartão</div>
+
+      <!-- MENSAL -->
+      <div class="price-monthly-block">
+        <div class="price-original">R$ 99,90</div>
+        <div class="price-value"><sup>R$</sup>69<span style="font-size:28px;">,90</span></div>
+        <div class="price-period">por mês · créditos renovam todo mês</div>
+        <div class="price-installment">ou 12x de R$ 6,57 no cartão</div>
+      </div>
+      <!-- ANUAL -->
+      <div class="price-annual-block">
+        <div class="annual-save-badge">Economize <span style="color:#ff2222;">25</span>%</div>
+        <div class="price-value"><sup>R$</sup>629<span style="font-size:28px;">,10</span><span style="font-size:18px;font-weight:500;margin-left:4px;">/ano</span></div>
+      </div>
+
       <ul class="price-list">
         <li>200 gerações por mês</li>
-        <li>Postando 4 vídeos por dia na sua conta, você garante 50 dias de vídeos</li>
+        <li class="annual-only" style="color:#86efac;">+ 50 gerações bônus 🎁</li>
+        <li style="color:white;font-weight:600;">Postando 4 vídeos por dia, você garante 55 dias de conteúdo pronto com esse plano.</li>
         <li>Prompt vídeo + legenda</li>
         <li>Galeria completa de prompts</li>
         <li>Modo lote (até 20 produtos)</li>
         <li>Suporte via WhatsApp 24h</li>
-        <li class="off">Call privada com a equipe</li>
+        <li class="annual-only" style="color:#86efac;font-weight:700;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
       </ul>
-      <a href="https://pay.kiwify.com.br/dfVMLGx" class="btn-price-plan">Começar com Starter →</a>
+      <a href="https://pay.kiwify.com.br/dfVMLGx" class="btn-price-plan" id="ctaStarter">Começar com Starter →</a>
     </div>
 
     <!-- PRO -->
@@ -2166,21 +2236,31 @@ function switchTab(tab) {
       <div class="price-badge badge-promo">🔥 MAIS VENDIDO</div>
       <div class="price-plan">Pro</div>
       <div class="price-desc">Para criadores e lojistas que escalam conteúdo todo dia</div>
-      <div class="price-original">R$ 197,00</div>
-      <div class="price-value"><sup>R$</sup>127<span style="font-size:28px;">,90</span></div>
-      <div class="price-period">por mês · créditos renovam todo mês</div>
-      <div class="price-installment">ou 12x de R$ 11,66 no cartão</div>
+
+      <!-- MENSAL -->
+      <div class="price-monthly-block">
+        <div class="price-original">R$ 197,00</div>
+        <div class="price-value"><sup>R$</sup>127<span style="font-size:28px;">,90</span></div>
+        <div class="price-period">por mês · créditos renovam todo mês</div>
+        <div class="price-installment">ou 12x de R$ 11,66 no cartão</div>
+      </div>
+      <!-- ANUAL -->
+      <div class="price-annual-block">
+        <div class="annual-save-badge">Economize <span style="color:#ff2222;">35</span>%</div>
+        <div class="price-value"><sup>R$</sup>999<span style="font-size:28px;">,00</span><span style="font-size:18px;font-weight:500;margin-left:4px;">/ano</span></div>
+      </div>
+
       <ul class="price-list">
         <li>500 gerações por mês</li>
         <li style="color:#86efac;">+ 100 gerações bônus 🎁</li>
-        <li>Postando 4 vídeos por dia na sua conta, você garante 150 dias de conteúdo com um click</li>
+        <li style="color:white;font-weight:600;">Postando 4 vídeos por dia, você garante 160 dias de conteúdo pronto com esse plano.</li>
         <li>Prompt vídeo + legenda</li>
         <li>Galeria completa de prompts</li>
         <li>Modo lote (até 20 produtos)</li>
         <li>Suporte via WhatsApp 24h</li>
         <li style="color:#86efac;font-weight:700;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
       </ul>
-      <a href="https://pay.kiwify.com.br/GKp96ec" class="btn-price-plan">Quero o Pro →</a>
+      <a href="https://pay.kiwify.com.br/GKp96ec" class="btn-price-plan" id="ctaPro">Quero o Pro →</a>
     </div>
 
     <!-- AGÊNCIA -->
@@ -2188,25 +2268,58 @@ function switchTab(tab) {
       <div class="price-badge badge-premium">👑 PREMIUM</div>
       <div class="price-plan">Agência</div>
       <div class="price-desc">Para pessoas que realmente querem ter resultados com o TIKTOK SHOP</div>
-      <div class="price-original">R$ 397,00</div>
-      <div class="price-value"><sup>R$</sup>247<span style="font-size:30px;">,90</span></div>
-      <div class="price-period">por mês · créditos renovam todo mês</div>
-      <div class="price-installment">ou 12x de R$ 22,61 no cartão</div>
+
+      <!-- MENSAL -->
+      <div class="price-monthly-block">
+        <div class="price-original">R$ 397,00</div>
+        <div class="price-value"><sup>R$</sup>247<span style="font-size:30px;">,90</span></div>
+        <div class="price-period">por mês · créditos renovam todo mês</div>
+        <div class="price-installment">ou 12x de R$ 22,61 no cartão</div>
+      </div>
+      <!-- ANUAL -->
+      <div class="price-annual-block">
+        <div class="annual-save-badge">Economize <span style="color:#ff2222;">60</span>%</div>
+        <div class="price-value"><sup>R$</sup>1.636<span style="font-size:28px;">,14</span><span style="font-size:18px;font-weight:500;margin-left:4px;">/ano</span></div>
+      </div>
+
       <ul class="price-list">
         <li>1.200 gerações por mês</li>
         <li style="color:#e9b8ff;">+ 300 gerações bônus 🎁</li>
-        <li>Postando 4 vídeos por dia na sua conta, você garante 365 dias de conteúdo com um click</li>
+        <li style="color:white;font-weight:600;">Postando 4 vídeos por dia, você garante 375 dias de conteúdo pronto com esse plano.</li>
         <li>Prompt vídeo + legenda</li>
         <li>Galeria completa de prompts</li>
         <li>Modo lote (até 20 produtos)</li>
         <li>Suporte via WhatsApp 24h</li>
-        <li style="color:#e9b8ff;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
+        <li style="color:#e9b8ff;font-weight:700;">Call privada com a equipe — aula completa de como criar conteúdo e escalar no TikTok Shop</li>
       </ul>
-      <a href="https://pay.kiwify.com.br/NUqDuNo" class="btn-price-plan">✦ Quero o Agência →</a>
+      <a href="https://pay.kiwify.com.br/NUqDuNo" class="btn-price-plan" id="ctaAgencia">✦ Quero o Agência →</a>
     </div>
 
   </div>
 </section>
+
+<script>
+function setPricingMode(mode) {
+  var grid = document.getElementById('pricingGrid');
+  var btnM = document.getElementById('toggleMonthly');
+  var btnA = document.getElementById('toggleAnual');
+  if (mode === 'annual') {
+    grid.classList.add('annual');
+    btnA.classList.add('active');
+    btnM.classList.remove('active');
+    document.getElementById('ctaStarter').href = '#';
+    document.getElementById('ctaPro').href = '#';
+    document.getElementById('ctaAgencia').href = '#';
+  } else {
+    grid.classList.remove('annual');
+    btnM.classList.add('active');
+    btnA.classList.remove('active');
+    document.getElementById('ctaStarter').href = 'https://pay.kiwify.com.br/dfVMLGx';
+    document.getElementById('ctaPro').href = 'https://pay.kiwify.com.br/GKp96ec';
+    document.getElementById('ctaAgencia').href = 'https://pay.kiwify.com.br/NUqDuNo';
+  }
+}
+</script>
 
 <!-- POST-PRICING CTA BANNER -->
 <section class="post-pricing-cta">
